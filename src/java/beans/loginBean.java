@@ -5,10 +5,12 @@
  */
 package beans;
 
-import de.vogella.mysql.first.Main;
-import de.vogella.mysql.first.MySQLAccess;
+import static beans.loginBean.main;
+import dao.loginDao;
+import dao.MySQLAccess;
 //import daos.loginDao;
 import java.io.Serializable;
+import java.nio.channels.SeekableByteChannel;
 //import java.sql.Connection;
 //import java.sql.SQLException;
 import javax.inject.Named;
@@ -16,6 +18,8 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.application.NavigationHandler;
+import javax.inject.Inject;
+import models.loginModel;
    
 
 
@@ -23,36 +27,27 @@ import javax.faces.application.NavigationHandler;
 
 /**
  *
- * @author OthmanKurdi
+ * @Kamal aljabari
  */
-@Named(value = "signin")
-@SessionScoped
-public class signin implements Serializable{
 
+@Named(value = "loginBean")
+@SessionScoped
+public class loginBean implements Serializable{
+    MySQLAccess daoo = new MySQLAccess();
+
+        
+    
     private String username;
     private String password;
-    private Main main=new Main();
-     //MySQLAccess dao = new MySQLAccess();
-     
+
+  
+
     
-   // private final ConnectionDao connectionDao;
-   // private Connection connection; 
-    /*public Signin() throws SQLException {
-        //loginDao logindao=new loginDao();
-        connectionDao connectionDao=new ConnectionDao()
-    }
-    
-   /* @PostConstruct
-    public void init(){
-        try {            
-            connectionDao.ConnectionDao();            
-        } catch (Exception ex) {
-            Logger.getLogger(ManageEventsBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
+ 
     public void setUsername(String username){
         this.username=username;
     }
+    
     public String getUsername(){
         return this.username;
     }
@@ -63,16 +58,14 @@ public class signin implements Serializable{
     public String getPassword(){
         return this.password;
     }
-    /* public Connection getConnection() {
-        return connection;
-    }
+    
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }*/
      public void login() throws Exception {
-        String[] args=null;
-        main.main(args);
+         loginModel loginmodel=new loginModel();
+        loginmodel.setUsername(username);
+        loginmodel.setPassword(password); 
+        
+        
         FacesContext facesContext = FacesContext.getCurrentInstance();
         boolean success = true;
         
@@ -86,6 +79,7 @@ public class signin implements Serializable{
         
         if(success){
             System.out.println("hala");
+
             navigate("/welcome");
         } 
     }      

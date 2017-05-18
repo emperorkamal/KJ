@@ -1,13 +1,10 @@
 package models;
 
 import java.io.Serializable;
+import beans.loginBean;
 
-/**
- *
- * @author Firas.Alhawari
- * 
- */
-public class access implements Serializable{
+
+public class loginModel implements Serializable{
     private String username;
     private String password;
    

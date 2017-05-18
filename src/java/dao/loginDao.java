@@ -1,8 +1,8 @@
-package de.vogella.mysql.first;
+package dao;
+import beans.loginBean;
+import models.loginModel;
 
-import de.vogella.mysql.first.MySQLAccess;
-
-public class Main {
+public class loginDao {
     public static void main(String[] args) throws Exception {
         MySQLAccess dao = new MySQLAccess();
         dao.readDataBase();

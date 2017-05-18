@@ -1,4 +1,4 @@
-package de.vogella.mysql.first;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import beans.loginBean;
+import models.loginModel; 
 
 public class MySQLAccess {
     private Connection connect = null;
@@ -15,13 +17,14 @@ public class MySQLAccess {
     private ResultSet resultSet = null;
 
     public void readDataBase() throws Exception {
+        
         try {
             // This will load the MySQL driver, each DB has its own driver
             Class.forName("com.mysql.jdbc.Driver");
             // Setup the connection with the DB
             connect = DriverManager
                     .getConnection("jdbc:mysql://localhost/feedback?"
-                            + "user=sqluser&password=sqluserpw");
+                            + "user=root&password=1234");
 
             // Statements allow to issue SQL queries to the database
             statement = connect.createStatement();
@@ -35,7 +38,8 @@ public class MySQLAccess {
                     .prepareStatement("insert into  feedback.comments values (default, ?, ?, ?, ? , ?, ?)");
             // "myuser, webpage, datum, summary, COMMENTS from feedback.comments");
             // Parameters start with 1
-            preparedStatement.setString(1, "Test");
+            loginModel login = new loginModel();
+            preparedStatement.setString(1,"TeeeeeeeeZ" );
             preparedStatement.setString(2, "TestEmail");
             preparedStatement.setString(3, "TestWebpage");
             preparedStatement.setDate(4, new java.sql.Date(2009, 12, 11));

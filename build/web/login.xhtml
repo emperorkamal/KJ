@@ -26,10 +26,10 @@
             <b><h:outputLabel value="Golden Flow"/> </b> <br/><br/>
             
             <h:outputLabel value="User name: "/>
-            <h:inputText value="#{signin.username}"/><br/><br/>
+            <h:inputText value="#{loginBean.username}"/><br/><br/>
             <h:outputLabel value="Password: "/>
-            <h:inputText value="#{signin.password}"/><br/><br/>
-            <h:commandButton value="submit" action="#{signin.login()}" />
+            <h:inputText value="#{loginBean.password}"/><br/><br/>
+            <h:commandButton value="submit" action="#{loginBean.login()}" />
             <input type="reset" value="reset"/>
            </center>
             </h:form>
