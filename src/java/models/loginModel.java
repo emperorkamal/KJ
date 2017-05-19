@@ -3,7 +3,6 @@ package models;
 import java.io.Serializable;
 import beans.loginBean;
 
-
 public class loginModel implements Serializable{
     private String username;
     private String password;

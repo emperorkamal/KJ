@@ -9,6 +9,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class MySQLAccess {
+    
+    public void MySQLAccess(){
+    
+    }
+    
     private Connection connect = null;
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;
@@ -39,10 +44,12 @@ public class MySQLAccess {
             preparedStatement = connect.prepareStatement(
                     "insert into  kj.login values (?, ?)");
             
+            
+            
             loginBean loginbean = new loginBean();
             // "myuser, webpage, datum, summary, COMMENTS from feedback.comments");
             // Parameters start with 1
-            preparedStatement.setString(1, "kamal" );
+            preparedStatement.setString(1, "kamal");
             preparedStatement.setString(2, "1234");
          
             preparedStatement.executeUpdate();
@@ -51,6 +58,7 @@ public class MySQLAccess {
                     .prepareStatement("SELECT username, password from kj.login");
             resultSet = preparedStatement.executeQuery();
             writeResultSet(resultSet);
+            
 
             // Remove again the insert comment
             preparedStatement = connect
@@ -67,6 +75,7 @@ public class MySQLAccess {
         } finally {
             close();
         }
+        
 
     }
 
@@ -115,5 +124,6 @@ public class MySQLAccess {
 
         }
     }
-
+     
+    
 }

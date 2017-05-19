@@ -23,28 +23,20 @@ import models.loginModel;
 import dao.MySQLAccess;
    
 
-
-
-
 /**
  *
  * @Kamal aljabari
  */
-
 @Named(value = "loginBean")
 @SessionScoped
 public class loginBean implements Serializable{
     MySQLAccess daoo = new MySQLAccess();
 
-        
+    
     
     private String username;
     private String password;
-
-  
-
     
- 
     public void setUsername(String username){
         this.username=username;
     }
@@ -63,7 +55,7 @@ public class loginBean implements Serializable{
 
      public void login()  throws Exception {
           
-        
+
         
         FacesContext facesContext = FacesContext.getCurrentInstance();
         boolean success = true;
@@ -95,6 +87,7 @@ public class loginBean implements Serializable{
  
 
 //import de.vogella.mysql.first.MySQLAccess;
+
 
 
     public static void main(String[] args) throws Exception {
