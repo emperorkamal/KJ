@@ -1,14 +1,12 @@
 package dao;
 
+import beans.loginBean;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
-import beans.loginBean;
-import models.loginModel; 
 
 public class MySQLAccess {
     private Connection connect = null;
@@ -19,47 +17,49 @@ public class MySQLAccess {
     public void readDataBase() throws Exception {
         
         try {
+           
             // This will load the MySQL driver, each DB has its own driver
             Class.forName("com.mysql.jdbc.Driver");
             // Setup the connection with the DB
             connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/feedback?"
+                    .getConnection("jdbc:mysql://localhost/kj?"
                             + "user=root&password=1234");
 
+            
             // Statements allow to issue SQL queries to the database
             statement = connect.createStatement();
+            
             // Result set get the result of the SQL query
             resultSet = statement
-                    .executeQuery("select * from feedback.comments");
+                    .executeQuery("select * from kj.login");
             writeResultSet(resultSet);
 
-            // PreparedStatements can use variables and are more efficient
-            preparedStatement = connect
-                    .prepareStatement("insert into  feedback.comments values (default, ?, ?, ?, ? , ?, ?)");
+           
+ // PreparedStatements can use variables and are more efficient
+            preparedStatement = connect.prepareStatement(
+                    "insert into  kj.login values (?, ?)");
+            
+            loginBean loginbean = new loginBean();
             // "myuser, webpage, datum, summary, COMMENTS from feedback.comments");
             // Parameters start with 1
-            loginModel login = new loginModel();
-            preparedStatement.setString(1,"TeeeeeeeeZ" );
-            preparedStatement.setString(2, "TestEmail");
-            preparedStatement.setString(3, "TestWebpage");
-            preparedStatement.setDate(4, new java.sql.Date(2009, 12, 11));
-            preparedStatement.setString(5, "TestSummary");
-            preparedStatement.setString(6, "TestComment");
+            preparedStatement.setString(1, "kamal" );
+            preparedStatement.setString(2, "1234");
+         
             preparedStatement.executeUpdate();
-
+            
             preparedStatement = connect
-                    .prepareStatement("SELECT myuser, webpage, datum, summary, COMMENTS from feedback.comments");
+                    .prepareStatement("SELECT username, password from kj.login");
             resultSet = preparedStatement.executeQuery();
             writeResultSet(resultSet);
 
             // Remove again the insert comment
             preparedStatement = connect
-            .prepareStatement("delete from feedback.comments where myuser= ? ; ");
-            preparedStatement.setString(1, "Test");
+            .prepareStatement("delete from kj.login where username= ? ; ");
+            preparedStatement.setString(1, "shas");
+           
             preparedStatement.executeUpdate();
 
-            resultSet = statement
-            .executeQuery("select * from feedback.comments");
+            resultSet = statement.executeQuery("select * from kj.login");
             writeMetaData(resultSet);
 
         } catch (Exception e) {
@@ -89,16 +89,11 @@ public class MySQLAccess {
             // also possible to get the columns via the column number
             // which starts at 1
             // e.g. resultSet.getSTring(2);
-            String user = resultSet.getString("myuser");
-            String website = resultSet.getString("webpage");
-            String summary = resultSet.getString("summary");
-            Date date = resultSet.getDate("datum");
-            String comment = resultSet.getString("comments");
-            System.out.println("User: " + user);
-            System.out.println("Website: " + website);
-            System.out.println("summary: " + summary);
-            System.out.println("Date: " + date);
-            System.out.println("Comment: " + comment);
+            String username = resultSet.getString("username");
+            String password = resultSet.getString("password");
+            
+            System.out.println("User: " + username);
+            System.out.println("Password: " + password);
         }
     }
 

@@ -6,9 +6,9 @@
 package beans;
 
 import static beans.loginBean.main;
-import dao.loginDao;
 import dao.MySQLAccess;
 //import daos.loginDao;
+import dao.loginDao;
 import java.io.Serializable;
 import java.nio.channels.SeekableByteChannel;
 //import java.sql.Connection;
@@ -20,6 +20,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.application.NavigationHandler;
 import javax.inject.Inject;
 import models.loginModel;
+import dao.MySQLAccess;
    
 
 
@@ -60,10 +61,8 @@ public class loginBean implements Serializable{
     }
     
 
-     public void login() throws Exception {
-         loginModel loginmodel=new loginModel();
-        loginmodel.setUsername(username);
-        loginmodel.setPassword(password); 
+     public void login()  throws Exception {
+          
         
         
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -78,9 +77,10 @@ public class loginBean implements Serializable{
         }      
         
         if(success){
-            System.out.println("hala");
 
             navigate("/welcome");
+            System.out.println("hala");
+
         } 
     }      
 
@@ -100,7 +100,7 @@ public class loginBean implements Serializable{
     public static void main(String[] args) throws Exception {
         MySQLAccess dao = new MySQLAccess();
         dao.readDataBase();
-        System.out.print("connected");
+        System.out.print("connected.\n");
     }
 
 }
