@@ -8,7 +8,7 @@ package beans;
 import static beans.loginBean.main;
 import dao.MySQLAccess;
 //import daos.loginDao;
-import dao.loginDao;
+
 import java.io.Serializable;
 import java.nio.channels.SeekableByteChannel;
 //import java.sql.Connection;
@@ -21,6 +21,7 @@ import javax.faces.application.NavigationHandler;
 import javax.inject.Inject;
 import models.loginModel;
 import dao.MySQLAccess;
+import org.kohsuke.rngom.digested.Main;
    
 
 /**
@@ -30,7 +31,7 @@ import dao.MySQLAccess;
 @Named(value = "loginBean")
 @SessionScoped
 public class loginBean implements Serializable{
-    MySQLAccess daoo = new MySQLAccess();
+    //MySQLAccess daoo = new MySQLAccess();
 
     
     
@@ -55,8 +56,8 @@ public class loginBean implements Serializable{
 
      public void login()  throws Exception {
           
-
-        
+       MySQLAccess mySQLAccess=new MySQLAccess();
+        mySQLAccess.readDataBase();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         boolean success = true;
         
@@ -95,6 +96,8 @@ public class loginBean implements Serializable{
         dao.readDataBase();
         System.out.print("connected.\n");
     }
+    
+    
 
 }
 

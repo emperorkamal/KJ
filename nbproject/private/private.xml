@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Kamal%20Jabari/Documents/KJ/web/login.xhtml</file>
-            <file>file:/C:/Users/Kamal%20Jabari/Documents/KJ/src/java/dao/MySQLAccess.java</file>
-            <file>file:/C:/Users/Kamal%20Jabari/Documents/KJ/src/java/beans/loginBean.java</file>
-            <file>file:/C:/Users/Kamal%20Jabari/Documents/KJ/src/java/dao/loginDao.java</file>
+            <file>file:/C:/Users/OthmanKurdi/Documents/NetBeansProjects/KJ/src/java/beans/loginBean.java</file>
+            <file>file:/C:/Users/OthmanKurdi/Documents/NetBeansProjects/KJ/web/login.xhtml</file>
+            <file>file:/C:/Users/OthmanKurdi/Documents/NetBeansProjects/KJ/src/java/dao/MySQLAccess.java</file>
         </group>
     </open-files>
 </project-private>

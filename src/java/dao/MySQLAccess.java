@@ -1,73 +1,67 @@
 package dao;
 
-import beans.loginBean;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
+import beans.loginBean;
+import javax.faces.context.FacesContext;
 
-public class MySQLAccess {
-    
-    public void MySQLAccess(){
-    
-    }
-    
+
+public class MySQLAccess extends loginBean{
     private Connection connect = null;
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
-
+    private loginBean loginBean;
+            
     public void readDataBase() throws Exception {
-        
         try {
-           
             // This will load the MySQL driver, each DB has its own driver
             Class.forName("com.mysql.jdbc.Driver");
             // Setup the connection with the DB
             connect = DriverManager
-                    .getConnection("jdbc:mysql://localhost/kj?"
+                    .getConnection("jdbc:mysql://localhost/feedback?"
                             + "user=root&password=1234");
 
-            
             // Statements allow to issue SQL queries to the database
             statement = connect.createStatement();
-            
             // Result set get the result of the SQL query
             resultSet = statement
-                    .executeQuery("select * from kj.login");
+                    .executeQuery("select * from feedback.comments");
             writeResultSet(resultSet);
 
-           
- // PreparedStatements can use variables and are more efficient
-            preparedStatement = connect.prepareStatement(
-                    "insert into  kj.login values (?, ?)");
-            
-            
-            
-            loginBean loginbean = new loginBean();
+            // PreparedStatements can use variables and are more efficient
+            preparedStatement = connect
+                    .prepareStatement("insert into  feedback.comments values (default, ?, ?, ?, ? , ?, ?)");
             // "myuser, webpage, datum, summary, COMMENTS from feedback.comments");
             // Parameters start with 1
-            preparedStatement.setString(1, "kamal");
-            preparedStatement.setString(2, "1234");
-         
+            FacesContext context=FacesContext.getCurrentInstance();
+            loginBean=(loginBean)context.getELContext().getELResolver().getValue(context.getELContext(), null, "loginBean");
+            preparedStatement.setString(1, loginBean.getUsername());
+            preparedStatement.setString(2, "TestEmail");
+            preparedStatement.setString(3, "TestWebpage");
+            preparedStatement.setDate(4, new java.sql.Date(2009, 12, 11));
+            preparedStatement.setString(5, "TestSummary");
+            preparedStatement.setString(6, "TestComment");
             preparedStatement.executeUpdate();
-            
+
             preparedStatement = connect
-                    .prepareStatement("SELECT username, password from kj.login");
+                    .prepareStatement("SELECT myuser, webpage, datum, summary, COMMENTS from feedback.comments");
             resultSet = preparedStatement.executeQuery();
             writeResultSet(resultSet);
-            
 
             // Remove again the insert comment
             preparedStatement = connect
-            .prepareStatement("delete from kj.login where username= ? ; ");
-            preparedStatement.setString(1, "shas");
-           
+            .prepareStatement("delete from feedback.comments where myuser= ? ; ");
+            preparedStatement.setString(1, "Test");
             preparedStatement.executeUpdate();
 
-            resultSet = statement.executeQuery("select * from kj.login");
+            resultSet = statement
+            .executeQuery("select * from feedback.comments");
             writeMetaData(resultSet);
 
         } catch (Exception e) {
@@ -75,7 +69,6 @@ public class MySQLAccess {
         } finally {
             close();
         }
-        
 
     }
 
@@ -98,11 +91,16 @@ public class MySQLAccess {
             // also possible to get the columns via the column number
             // which starts at 1
             // e.g. resultSet.getSTring(2);
-            String username = resultSet.getString("username");
-            String password = resultSet.getString("password");
-            
-            System.out.println("User: " + username);
-            System.out.println("Password: " + password);
+            String user = resultSet.getString("myuser");
+            String website = resultSet.getString("webpage");
+            String summary = resultSet.getString("summary");
+            Date date = resultSet.getDate("datum");
+            String comment = resultSet.getString("comments");
+            System.out.println("User: " + user);
+            System.out.println("Website: " + website);
+            System.out.println("summary: " + summary);
+            System.out.println("Date: " + date);
+            System.out.println("Comment: " + comment);
         }
     }
 
@@ -124,6 +122,15 @@ public class MySQLAccess {
 
         }
     }
-     
-    
+
+
+
+    public static void main(String[] args) throws Exception {
+        MySQLAccess dao = new MySQLAccess();
+        dao.readDataBase();
+    }
+
+   
+
+
 }
