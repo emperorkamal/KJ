@@ -4,36 +4,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
-          <style type="text/css">
-              
-              #p_fieldsetid{
-                  width:410px;
-                  height: 420px;
-                  box-shadow: 9px 0 4px -4px #cccccc, -8px 0 5px -4px #cccccc;
-              }
-
-          </style>
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:outputStylesheet library="css" name="newcss.css"/>
     <h:head>
         <title>gOLDEN fLOW</title>
-       
+
     </h:head>
     <h:body>
-        
-        <f:view> 
-            <h:form>
-           <center> 
-            <b><h:outputLabel value="Golden Flow"/> </b> <br/><br/>
-            
-            <h:outputLabel value="User name: "/>
-            <h:inputText value="#{loginBean.username}"/><br/><br/>
-            <h:outputLabel value="Password: "/>
-            <h:inputText value="#{loginBean.password}"/><br/><br/>
-            <h:commandButton value="submit" action="#{loginBean.login()}" />
-            <input type="reset" value="reset"/>
-           </center>
-            </h:form>
-        </f:view>
-        
+        <ui:decorate template="/app_templates/login_template.xhtml">
+            <f:view> 
+                <h:form >
+                    <center> 
+                        
+                            <b><h:outputLabel value="Golden Flow"/> </b> <br/><br/>
+
+                            <h:outputLabel value="#{msgs.user_name}"/>
+                            <h:inputText value="#{loginBean.username}"/><br/><br/>
+                            <h:outputLabel value="#{msgs.password}"/>
+                            <h:inputText value="#{loginBean.password}"/><br/><br/>
+                            <h:commandButton value="#{msgs.login}" action="#{loginBean.login()}" />
+                            <input type="reset" value="#{msgs.reset}"/>
+                    </center>
+                    <h:commandLink value="#{msgs.login_admin}"  
+                                   style="float:#{langBean.dir}}"
+                           action="/add_access.xhtml"/> 
+                </h:form>
+            </f:view>
+        </ui:decorate> 
     </h:body>
 </html>

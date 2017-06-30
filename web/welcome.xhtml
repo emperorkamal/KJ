@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>welcome</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>you are welcome #{loginBean.getUsername()} and this is yours password #{loginBean.getPassword()}</div>
-    </body>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"       
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:outputStylesheet library="css" name="app_style.css"/>
+    <h:head>
+        <title>gOLDEN fLOW</title>
+
+    </h:head>
+    <h:body>
+        <ui:decorate template="/app_templates/app_template.xhtml">
+            <f:view>
+                <h:form id="welcome">
+                    <h:outputLabel value="you are welcome #{loginBean.getUsername()} and this is yours password #{loginBean.getPassword()}"/>
+                </h:form>
+            </f:view> 
+        </ui:decorate>
+    </h:body>
 </html>

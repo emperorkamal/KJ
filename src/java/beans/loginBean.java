@@ -6,7 +6,7 @@
 package beans;
 
 import static beans.loginBean.main;
-import dao.MySQLAccess;
+import daos.MySQLAccess;
 //import daos.loginDao;
 
 import java.io.Serializable;
@@ -19,8 +19,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.application.NavigationHandler;
 import javax.inject.Inject;
-import models.loginModel;
-import dao.MySQLAccess;
+import models.UserData;
+import daos.MySQLAccess;
 import org.kohsuke.rngom.digested.Main;
    
 

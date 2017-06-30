@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:outputStylesheet library="css" name="app_style.css"/>
+    <h:head>
+        <title>gOLDEN fLOW</title>
+
+    </h:head>
+    <h:body>
+        <ui:decorate template="/app_templates/app_template.xhtml">
+            <f:view>
+                <h:form >
+                    <p:panel header="#{msgs.new_access}">
+                        <p:fieldset legend="#{msgs.user_info}">
+                            <h:panelGrid id="newAccessUserInfo_panelGrid" columns="2">
+                                <h:outputLabel value="#{msgs.name}"/>
+                                <h:inputText value="#{addUserBean.name}"/>
+                                <h:outputLabel value="#{msgs.last_name}"/>
+                                <h:inputText value="#{addUserBean.last_name}"/>
+                                <h:outputLabel value="#{msgs.phone}"/>
+                                <h:inputText value="#{addUserBean.phone}"/>
+                                <h:outputLabel value="#{msgs.gender}"/>
+                                <h:inputText value="#{addUserBean.gender}"/>
+                                <h:outputLabel value="#{msgs.address}"/>
+                                <h:inputText value="#{addUserBean.address}"/>
+                            </h:panelGrid>
+                        </p:fieldset>
+                        <br/>
+                        <p:fieldset legend="#{msgs.new_username_password}">
+                            <h:panelGrid id="usernameAndPassword_panelGrid"
+                                         columns="2"
+                                         style="width: auto">
+                                <h:outputLabel value="#{msgs.user_name}"/>
+                                <h:inputText value="#{addUserBean.user_name}"/>
+                                <h:outputLabel value="#{msgs.password}"/>
+                                <h:inputText value="#{addUserBean.password}"/>
+                            </h:panelGrid>
+                        </p:fieldset>
+                        <h:panelGrid id="saveCancelNewUser_panelGrid" columns="2">
+                            <h:commandButton value="#{msgs.save}" action="#{addUserBean.addUser()}"/>
+                            <h:commandButton value="#{msgs.cancel}" action="login"/>
+                        </h:panelGrid>
+
+                    </p:panel>
+                </h:form>
+            </f:view> 
+        </ui:decorate>
+    </h:body>
+</html>
