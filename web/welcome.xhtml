@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"       
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+
     <h:outputStylesheet library="css" name="app_style.css"/>
     <h:head>
         <title>gOLDEN fLOW</title>
@@ -17,6 +17,54 @@
             <f:view>
                 <h:form id="welcome">
                     <h:outputLabel value="you are welcome #{loginBean.getUsername()} and this is yours password #{loginBean.getPassword()}"/>
+                    <p:growl id="msgs" showDetail="true" />
+
+                    <p:fieldset legend="Gold" style="margin-bottom:20px">
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <p:commandLink value="Gold_Section" action="goldpage">this the GOLD section</p:commandLink>
+                            <p:lightBox styleClass="imagebox" id="lighbox1">  
+                                <h:outputLink value="resources/images/gold1.jpg" title="Nature 1">  
+                                    <h:graphicImage name="/images/gold1.jpg" id="nature1" style="height: 77px; width: 70px" />  
+                                </h:outputLink>
+
+                                <h:outputLink value="resources/images/gold2.jpg" title="Nature 2">  
+                                    <h:graphicImage name="/images/gold2.jpg" id="nature2" style="height: 77px; width: 100px" />  
+                                </h:outputLink>
+
+                                <h:outputLink value="resources/images/gold3.jpg" title="Nature 3">  
+                                    <h:graphicImage name="/images/gold3.jpg" id="nature3" style="height: 77px; width: 100px" />  
+                                </h:outputLink>
+
+                                <h:outputLink value="resources/images/gold4.jpg" title="Nature 4">  
+                                    <h:graphicImage name="/images/gold4.jpg" id="nature4" style="height: 77px; width: 100px" />  
+                                </h:outputLink>
+                            </p:lightBox>
+                        </h:panelGrid>
+                    </p:fieldset>
+
+                    <p:fieldset legend="Silver" style="margin-bottom:20px" >
+                        <h:panelGrid columns="2" cellpadding="5">
+
+                            <p:commandLink value="SILVER_Section" action="silverpage" style="animation-fill-mode: backwards">this the silver section</p:commandLink>
+                            <p:lightBox styleClass="imagebox" id="lighbox2">  
+                                <h:outputLink value="resources/images/silver1.jpg" title="s1">  
+                                    <h:graphicImage name="/images/silver1.jpg" id="s1" style="height: 77px; width: 70px" />  
+                                </h:outputLink>
+
+                                <h:outputLink value="resources/images/silver2.jpg" title="s 2">  
+                                    <h:graphicImage name="/images/silver2.jpg" id="s2" style="height: 77px; width: 100px" />  
+                                </h:outputLink>
+
+                                <h:outputLink value="resources/images/silver3.jpg" title="s 3">  
+                                    <h:graphicImage name="/images/silver3.jpg" id="s3" style="height: 77px; width: 100px" />  
+                                </h:outputLink>
+
+                                <h:outputLink value="resources/images/silver4.png" title="s 4">  
+                                    <h:graphicImage name="/images/silver4.png" id="s4" style="height: 77px; width: 100px" />  
+                                </h:outputLink>
+                            </p:lightBox>
+                        </h:panelGrid>
+                    </p:fieldset>
                 </h:form>
             </f:view> 
         </ui:decorate>
