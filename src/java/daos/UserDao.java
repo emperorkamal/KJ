@@ -30,13 +30,12 @@ public class UserDao extends MySQLAccess{
      */
     public void addUser(UserData user) throws SQLException{
         try{
-         // PreparedStatements can use variables and are more efficient
-            String sql="insert into  kj.user_data(id, user_name, password, name, last_name, phone, gender, date_of_issue) values ((SELECT MAX(RIDE_ID) FROM kj.user_data)+1,?,?,?,?,?,?,?,?)";
+            String sql="insert into user_data select max(id)+1,?,?,?,?,?,?,?,? from user_data";
             preparedStatement = connect.prepareStatement(sql);
-            // "myuser, webpage, datum, summary, COMMENTS from feedback.comments");
-            // Parameters start with 1
+            
             FacesContext context=FacesContext.getCurrentInstance();
             loginBean=(loginBean)context.getELContext().getELResolver().getValue(context.getELContext(), null, "loginBean");
+            
             preparedStatement.setString(1,user.getUser_name());            
             preparedStatement.setString(2,user.getPassword());
             preparedStatement.setString(3,user.getName());
