@@ -18,11 +18,13 @@ public class AddEditItemsBean implements Serializable{
     private int id;
     private int quantity;
     private String model;
-    private int weight;
+    private float weight;
     private String cirat;
     private String color;
     private int cost;
+    private String trader;
 
+    
 
     public AddEditItemsBean() {        
     }
@@ -40,6 +42,7 @@ public class AddEditItemsBean implements Serializable{
            item.getCirat();
            item.getCost();
            item.getColor();
+           item.getTrader();
            
             }
         } catch (Exception ex) {
@@ -71,14 +74,14 @@ public class AddEditItemsBean implements Serializable{
     /**
      * @return the weight
      */
-    public int getWeight() {
+    public float getWeight() {
         return weight;
     }
 
     /**
      * @param weight the weight to set
      */
-    public void setWeight(int weight) {
+    public void setWeight(float weight) {
         this.weight = weight;
     }
 
@@ -124,6 +127,14 @@ public class AddEditItemsBean implements Serializable{
         this.cost = cost;
     }
         
+    public String getTrader() {
+        return trader;
+    }
+
+    public void setTrader(String trader) {
+        this.trader = trader;
+    }
+
     public void saveItems() {
         try {
            Items item = new Items();
@@ -136,6 +147,7 @@ public class AddEditItemsBean implements Serializable{
            item.setCirat(cirat);
            item.setColor(color);
            item.setCost(cost);
+           item.setTrader(trader);
 
             
             if (getId() > 0) {

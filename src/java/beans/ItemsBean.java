@@ -30,7 +30,7 @@ public class ItemsBean implements Serializable{
     private int id ;
     private String model;
     private int quantity;
-    private int weight;
+    private float weight;
     private String cirat;
     private String color;
     private int cost;
@@ -96,14 +96,14 @@ public class ItemsBean implements Serializable{
         /**
      * @return the weight
      */
-    public int getWeight() {
+    public float getWeight() {
         return weight;
     }
 
     /**
      * @param weight the weight to set
      */
-    public void setWeight(int weight) {
+    public void setWeight(float weight) {
         this.weight = weight;
     }
 

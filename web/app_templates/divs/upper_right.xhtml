@@ -8,7 +8,7 @@
                            actionListener="#{langBean.toggleLanguage()}"/>        
             <h:commandLink value="#{msgs.logout}"  
                            style="float:right"
-                           action="/login.xhtml"/> 
+                           action="#{sessionBean.logout()}"/> 
         </h:panelGrid>
     </h:form>               
 </ui:composition>    

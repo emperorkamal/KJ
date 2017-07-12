@@ -29,7 +29,7 @@
                     </center>
                     <h:commandLink value="#{msgs.login_admin}"  
                                    style="float:#{langBean.dir}}"
-                           action="/add_access.xhtml"/> 
+                                   action="#{sessionBean.login()}"/> 
                 </h:form>
             </f:view>
         </ui:decorate> 

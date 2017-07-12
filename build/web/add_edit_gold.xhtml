@@ -79,6 +79,16 @@
                                      requiredMessage="error">
                         </p:inputText>
                         <h:message for="color" styleClass="errorMsg"/>
+                        
+                        <p:outputLabel value="trader:" for="trader" />
+                        <p:inputText id="trader"
+                                     value="#{addEditItemsBean.color}"
+                                     style="width:350px"
+                                     required="true"
+                                     maxlength="512"
+                                     requiredMessage="error">
+                        </p:inputText>
+                        <h:message for="color" styleClass="errorMsg"/>
                                           
                     </h:panelGrid>
                 </p:panel>
@@ -90,14 +100,6 @@
                                  style="float:#{langBean.styleFloat}"
                                  actionListener="#{addEditItemsBean.saveItems()}"
                                  action="gold_sector"/>
-                
-                                <p:commandButton value="Calculate Price"
-                                 icon="ui-icon-cancel"  
-                                 iconPos="#{langBean.styleFloat}"
-                                 styleClass="commandButton"
-                                 immediate="true" 
-                                 style="float:#{langBean.styleFloat}" 
-                                 action="cal_price"/>   
                                 
                 <p:commandButton value="#{msgs.cancel}"
                                  icon="ui-icon-cancel"  
