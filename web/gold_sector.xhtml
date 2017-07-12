@@ -81,6 +81,14 @@
                                                      disabled="#{itemsBean.selectedItem==null}"
                                                      action="add_edit_gold"
                                                      />
+                                    <p:commandButton value="sale"
+                                                     icon="ui-icon-pencil"                                  
+                                                     iconPos="#{langBean.styleFloat}"
+                                                     styleClass="commandButton"
+                                                     style="float:#{langBean.styleFloat}" 
+                                                     disabled="#{itemsBean.selectedItem==null}"
+                                                     action="sale_item"
+                                                     />
                                 </p:toolbarGroup>
                             </p:toolbar>
                         </f:facet>
