@@ -44,6 +44,12 @@ public class ItemsDao extends MySQLAccess{
 
         item.setModel(rs.getString("model"));
         item.setQuantity(rs.getInt("quantity"));
+        item.setWeight(rs.getInt("weight"));
+        item.setCirat(rs.getString("cirat"));
+        item.setColor(rs.getString("color"));
+        item.setCost(rs.getInt("cost"));
+        
+        
 
         
         return item;
@@ -53,7 +59,7 @@ public class ItemsDao extends MySQLAccess{
         
         try{
             Connection conn = getConnection();
-            String sql="insert into gold_item select max(id)+1,?,? from gold_item";
+            String sql="insert into gold_item select max(id)+1,?,?,?,?,?,? from gold_item";
             PreparedStatement ps = conn.prepareStatement(sql);
             
          
@@ -61,7 +67,11 @@ public class ItemsDao extends MySQLAccess{
             
             ps.setString(1,item.getModel());            
             ps.setInt(2,item.getQuantity());
-
+            ps.setInt(3,item.getWeight());    
+            ps.setString(4,item.getCirat());
+            ps.setString(5,item.getColor());
+            ps.setInt(6,item.getCost());
+            
             
             ps.executeUpdate();
             ps.close();
@@ -76,13 +86,22 @@ public class ItemsDao extends MySQLAccess{
 
             String sql = "UPDATE GOLD_ITEM SET"
                     + "QUANTITY=?,"
-                    + "MODEL=?"
+                    + "MODEL=?,"
+                    + "WEIGHT=?,"
+                    + "CIRAT=?,"
+                    + "COLOR=?,"
+                    + "COST=?"
+                   
                     + "WHERE (ID=?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             
             
             ps.setString(1, item.getModel());
             ps.setInt(2,    item.getQuantity());
+            ps.setInt(3,    item.getWeight());    
+            ps.setString(4, item.getCirat());
+            ps.setInt(5,    item.getCost());
+            ps.setString(6, item.getColor());
 
             ps.executeUpdate();
             

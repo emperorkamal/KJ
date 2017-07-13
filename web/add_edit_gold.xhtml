@@ -39,6 +39,46 @@
                                      requiredMessage="error">
                         </p:inputText>
                         <h:message for="quantity" styleClass="errorMsg"/>
+                        
+                        <p:outputLabel value="weight:" for="weight" />
+                        <p:inputText id="weight"
+                                     value="#{addEditItemsBean.weight}"
+                                     style="width:350px"
+                                     required="true"
+                                     maxlength="512"
+                                     requiredMessage="error">
+                        </p:inputText>
+                        <h:message for="weight" styleClass="errorMsg"/>
+                        
+                        <p:outputLabel value="cirat:" for="cirat" />
+                        <p:inputText id="cirat"
+                                     value="#{addEditItemsBean.cirat}"
+                                     style="width:350px"
+                                     required="true"
+                                     maxlength="512"
+                                     requiredMessage="error">
+                        </p:inputText>
+                        <h:message for="cirat" styleClass="errorMsg"/>
+                        
+                        <p:outputLabel value="cost:" for="cost" />
+                        <p:inputText id="cost"
+                                     value="#{addEditItemsBean.cost}"
+                                     style="width:350px"
+                                     required="true"
+                                     maxlength="512"
+                                     requiredMessage="error">
+                        </p:inputText>
+                        <h:message for="cost" styleClass="errorMsg"/>
+                        
+                        <p:outputLabel value="color:" for="color" />
+                        <p:inputText id="color"
+                                     value="#{addEditItemsBean.color}"
+                                     style="width:350px"
+                                     required="true"
+                                     maxlength="512"
+                                     requiredMessage="error">
+                        </p:inputText>
+                        <h:message for="color" styleClass="errorMsg"/>
                                           
                     </h:panelGrid>
                 </p:panel>

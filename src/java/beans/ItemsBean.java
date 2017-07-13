@@ -30,6 +30,10 @@ public class ItemsBean implements Serializable{
     private int id ;
     private String model;
     private int quantity;
+    private int weight;
+    private String cirat;
+    private String color;
+    private int cost;
     
     private Items selectedItem;
     private final ItemsDao itemdao = new ItemsDao();
@@ -89,6 +93,61 @@ public class ItemsBean implements Serializable{
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+        /**
+     * @return the weight
+     */
+    public int getWeight() {
+        return weight;
+    }
+
+    /**
+     * @param weight the weight to set
+     */
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    /**
+     * @return the cirat
+     */
+    public String getCirat() {
+        return cirat;
+    }
+
+    /**
+     * @param cirat the cirat to set
+     */
+    public void setCirat(String cirat) {
+        this.cirat = cirat;
+    }
+
+    /**
+     * @return the color
+     */
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * @param color the color to set
+     */
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    /**
+     * @return the cost
+     */
+    public int getCost() {
+        return cost;
+    }
+
+    /**
+     * @param cost the cost to set
+     */
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
     
         public Items getSelectedItem() {//selected model 
         return selectedItem;
@@ -115,4 +174,7 @@ public class ItemsBean implements Serializable{
         } catch (Exception ex) {
             //sar t3deel hon bel information bean kant bus w 5aletha driver
             Logger.getLogger(ItemsBean.class.getName()).log(Level.SEVERE, null, ex);
-        }}}
+        }}
+
+
+}

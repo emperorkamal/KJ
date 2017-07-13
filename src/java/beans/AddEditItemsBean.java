@@ -18,6 +18,10 @@ public class AddEditItemsBean implements Serializable{
     private int id;
     private int quantity;
     private String model;
+    private int weight;
+    private String cirat;
+    private String color;
+    private int cost;
 
 
     public AddEditItemsBean() {        
@@ -32,6 +36,10 @@ public class AddEditItemsBean implements Serializable{
            item.getId();
            item.getModel();
            item.getQuantity();
+           item.getWeight();
+           item.getCirat();
+           item.getCost();
+           item.getColor();
            
             }
         } catch (Exception ex) {
@@ -59,6 +67,62 @@ public class AddEditItemsBean implements Serializable{
     public void setModel(String model){
         this.model=model;
     }
+    
+    /**
+     * @return the weight
+     */
+    public int getWeight() {
+        return weight;
+    }
+
+    /**
+     * @param weight the weight to set
+     */
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    /**
+     * @return the cirat
+     */
+    public String getCirat() {
+        return cirat;
+    }
+
+    /**
+     * @param cirat the cirat to set
+     */
+    public void setCirat(String cirat) {
+        this.cirat = cirat;
+    }
+
+    /**
+     * @return the color
+     */
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * @param color the color to set
+     */
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    /**
+     * @return the cost
+     */
+    public int getCost() {
+        return cost;
+    }
+
+    /**
+     * @param cost the cost to set
+     */
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
         
     public void saveItems() {
         try {
@@ -68,6 +132,10 @@ public class AddEditItemsBean implements Serializable{
 
            item.setModel(model);
            item.setQuantity(quantity);
+           item.setWeight(weight);
+           item.setCirat(cirat);
+           item.setColor(color);
+           item.setCost(cost);
 
             
             if (getId() > 0) {
