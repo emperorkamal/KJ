@@ -24,12 +24,10 @@
                             <h:outputLabel value="#{msgs.password}"/>
                             <h:inputText value="#{loginBean.password}"/><br/><br/>
                             <h:commandButton value="#{msgs.login}" action="#{loginBean.login()}" />
-                            <h:commandButton value="#{msgs.login_admin}" action="#{loginBean.login()}" />
+                            <h:commandButton value="#{msgs.login_admin}" action="add_access.xhtml" />
                             <input type="reset" value="#{msgs.reset}"/>
                     </center>
-                    <h:commandLink value="#{msgs.login_admin}"  
-                                   style="float:#{langBean.dir}}"
-                                   action="#{sessionBean.login()}"/> 
+                    
                 </h:form>
             </f:view>
         </ui:decorate> 

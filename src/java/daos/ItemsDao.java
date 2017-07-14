@@ -74,28 +74,23 @@ public class ItemsDao extends MySQLAccess {
         }
     }
 
-    public void updateItem(Items item) throws Exception {
+    public void updateItem(Items item, int item_id) throws Exception {
         try {
             Connection conn = getConnection();
 
-            String sql = "UPDATE GOLD_ITEM SET"
-                    + "QUANTITY=?,"
-                    + "MODEL=?,"
-                    + "WEIGHT=?,"
-                    + "CIRAT=?,"
-                    + "COLOR=?,"
-                    + "COST=?"
-                    + "TRADER=?"
-                    + "WHERE (ID=?)";
+            String sql = "UPDATE kj.GOLD_ITEM SET ID=?, MODEL=?, QUANTITY=?, WEIGHT=?, CIRAT=?, COLOR=?, COST=?, TRADER=? WHERE ID=?";
             PreparedStatement ps = conn.prepareStatement(sql);
 
-            ps.setString(1, item.getModel());
-            ps.setInt(2, item.getQuantity());
-            ps.setFloat(3, item.getWeight());
-            ps.setString(4, item.getCirat());
-            ps.setInt(5, item.getCost());
+            ps.setInt(1, item_id);
+            ps.setString(2, item.getModel());
+            ps.setInt(3, item.getQuantity());
+            
+            ps.setFloat(4, item.getWeight());
+            ps.setString(5, item.getCirat());
             ps.setString(6, item.getColor());
-            ps.setString(7, item.getTrader());
+            ps.setInt(7, item.getCost());
+            ps.setString(8, item.getTrader());
+            ps.setInt(9, item_id);
             ps.executeUpdate();
 
             ps.close();
