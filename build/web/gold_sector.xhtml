@@ -36,15 +36,15 @@
                         </f:facet>
 
                         <p:column selectionMode="single" style="width:1%"/>
-                        <p:column headerText="Item Id"
-                                  style="width:3%"
+                        <p:column headerText="#{msgs.item_id}"
+                                  style="width:4%"
                                   filterBy="#{item.id}"
                                   filterMatchMode="contains"
                                   sortBy="#{item.id}"> 
                             <h:outputText value="#{item.id}"/>
                         </p:column>
 
-                        <p:column headerText="Model"
+                        <p:column headerText="#{msgs.model}"
                                   style="width:10%"
                                   filterBy="#{item.model}"
                                   filterMatchMode="contains"
@@ -52,7 +52,7 @@
                             <h:outputText value="#{item.model}"/>  
                         </p:column>
 
-                        <p:column headerText="Quantity"
+                        <p:column headerText="#{msgs.quantity}"
                                   style="width:10%"
                                   filterBy="#{item.quantity}"
                                   filterMatchMode="contains"
@@ -60,7 +60,7 @@
                             <h:outputText value="#{item.quantity}"/>  
                         </p:column>
                         
-                        <p:column headerText="weight"
+                        <p:column headerText="#{msgs.weight}"
                                   style="width:10%"
                                   filterBy="#{item.weight}"
                                   filterMatchMode="contains"
@@ -73,24 +73,26 @@
                         <f:facet name="footer">
                             <p:toolbar style="border: none">
                                 <p:toolbarGroup align="#{languageBean.screenLeft}">
-                                    <p:commandButton value="Delete"
-                                                     icon="ui-icon-minus"                                  
-                                                     iconPos="#{langBean.styleFloat}"
-                                                     styleClass="commandButton"
-                                                     style="float:#{langBean.styleFloat}" 
-                                                     disabled="#{itemsBean.selectedItem==null}"
-                                                     onclick="return confirm('#{msgs.confirm_delete_event}?');"
-                                                     actionListener="#{itemsBean.deleteSelectedItem()}"
-                                                     action="gold_sector" />
-                                    <p:commandButton value="Edit"
+                                    <p:commandButton value="#{msgs.details}"
                                                      icon="ui-icon-pencil"                                  
                                                      iconPos="#{langBean.styleFloat}"
                                                      styleClass="commandButton"
                                                      style="float:#{langBean.styleFloat}" 
                                                      disabled="#{itemsBean.selectedItem==null}"
+                                                     actionListener="#{itemsBean.saveSelectedItemId()}"
+                                                     action="item_details"
+                                                     />
+                                    
+                                    <p:commandButton value="#{msgs.edit}"
+                                                     icon="ui-icon-pencil"                                  
+                                                     iconPos="#{langBean.styleFloat}"
+                                                     styleClass="commandButton"
+                                                     style="float:#{langBean.styleFloat}" 
+                                                     disabled="#{itemsBean.selectedItem==null}"
+                                                     actionListener="#{itemsBean.saveSelectedItemId()}"
                                                      action="add_edit_gold"
                                                      />
-                                    <p:commandButton value="sale"
+                                    <p:commandButton value="#{msgs.sale}"
                                                      icon="ui-icon-pencil"                                  
                                                      iconPos="#{langBean.styleFloat}"
                                                      styleClass="commandButton"
@@ -99,25 +101,28 @@
                                                      
                                                      action="sale_item"
                                                      />
-                                    <p:commandButton value="details"
-                                                     icon="ui-icon-pencil"                                  
+                                    <p:commandButton value="#{msgs.delete}"
+                                                     icon="ui-icon-minus"                                  
                                                      iconPos="#{langBean.styleFloat}"
                                                      styleClass="commandButton"
                                                      style="float:#{langBean.styleFloat}" 
                                                      disabled="#{itemsBean.selectedItem==null}"
-                                                     
-                                                     action="item_details"
-                                                     />
+                                                     onclick="return confirm('#{msgs.confirm_delete_item}');"
+                                                     actionListener="#{itemsBean.deleteSelectedItem()}"
+                                                     action="gold_sector" />
+                                    
+                                    
                                 </p:toolbarGroup>
                             </p:toolbar>
                         </f:facet>
                     </p:dataTable>
 
-                    <p:commandButton value="Add"
+                    <p:commandButton value="#{msgs.add}"
                                      icon="ui-icon-plus"                                  
                                      iconPos="#{langBean.styleFloat}"
                                      styleClass="commandButton"
                                      style="float:#{langBean.styleFloat}" 
+                                     actionListener="#{sessionBean.setSelectedItemId(-1)}"
                                      action="add_edit_gold"/>     
                     <p:dock itemWidth="100">
                         <p:menuitem value="Home" icon="/resources/images/HomeButton.png" url="http://localhost:8080/kj/faces/welcome.xhtml"/>

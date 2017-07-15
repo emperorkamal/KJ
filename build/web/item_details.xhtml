@@ -17,37 +17,40 @@
                                 direction:#{langBean.dir};margin-top:10px; font-size:10pt">
                     <h:panelGrid id="add_gold"
                                  style="float: #{langBean.styleFloat};" 
-                                 columns="3"                              
+                                 columns="2"                              
                                  dir="#{langBean.dir}">
 
-                        <p:outputLabel value="model:" />
-                        <p:outputLabel value="" />
+                        <p:outputLabel value="#{msgs.model}" />
+                        <p:outputLabel value="#{itemDetailsBean.model}" />
                         
 
-                        <p:outputLabel value="quantity:"  />
-                        
+                        <p:outputLabel value="#{msgs.quantity}"  />
+                        <p:outputLabel value="#{itemDetailsBean.quantity}" />
                        
                         
-                        <p:outputLabel value="weight:"  />
+                        <p:outputLabel value="#{msgs.weight}"  />
+                        <p:outputLabel value="#{itemDetailsBean.weight}" />
                         
                         
-                        
-                        <p:outputLabel value="cirat:"/>
-                        
-                        
-                        
-                        <p:outputLabel value="cost:" />
+                        <p:outputLabel value="#{msgs.cirat}"/>
+                        <p:outputLabel value="#{itemDetailsBean.cirat}" />
                         
                         
+                        <p:outputLabel value="#{msgs.cost}" />
+                        <p:outputLabel value="#{itemDetailsBean.cost}" />
                         
-                        <p:outputLabel value="color:"  />
+                        
+                        <p:outputLabel value="#{msgs.color}"  />
+                        <p:outputLabel value="#{itemDetailsBean.color}" />
                         
                         
+                        <p:outputLabel value="#{msgs.trader}"  />
+                        <p:outputLabel value="#{itemDetailsBean.trader}" />
                                           
                     </h:panelGrid>
                 </p:panel>
 
-                <p:commandButton value="Done"
+                <p:commandButton value="#{msgs.done}"
                                  styleClass="commandButton"
                                  icon="ui-icon-disk"
                                  iconPos="#{langBean.styleFloat}"

@@ -34,7 +34,11 @@ public class ItemsBean implements Serializable{
     private String cirat;
     private String color;
     private int cost;
-    
+     private String trader;
+
+    @Inject
+    private beans.SessionBean sessionBean;
+     
     private Items selectedItem;
     private final ItemsDao itemdao = new ItemsDao();
     private ArrayList<Items> list;
@@ -149,6 +153,14 @@ public class ItemsBean implements Serializable{
         this.cost = cost;
     }
     
+    public String getTrader() {
+        return trader;
+    }
+
+    public void setTrader(String trader) {
+        this.trader = trader;
+    }
+    
         public Items getSelectedItem() {//selected model 
         return selectedItem;
     }
@@ -156,7 +168,9 @@ public class ItemsBean implements Serializable{
     public void setSelectedItem(Items selectedItem) {
         this.selectedItem = selectedItem;
     }
-    
+    public void saveSelectedItemId(){
+        sessionBean.setSelectedItemId(selectedItem.getId());
+    }
         public ArrayList<Items> getItem() {
         return list;
     }
@@ -171,6 +185,7 @@ public class ItemsBean implements Serializable{
     public void deleteSelectedItem() {
         try {
             itemdao.deleteItem(selectedItem.getId());
+            sessionBean.navigate("/gold_sector.xhtml");
         } catch (Exception ex) {
             //sar t3deel hon bel information bean kant bus w 5aletha driver
             Logger.getLogger(ItemsBean.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,5 +1,6 @@
 package beans;
 
+import daos.ItemDetailsDao;
 import daos.ItemsDao;
 import java.io.Serializable;
 import java.util.logging.Level;
@@ -10,10 +11,10 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import models.Items;
 
-
 @Named("addEditItemsBean")
 @ViewScoped
-public class AddEditItemsBean implements Serializable{
+public class AddEditItemsBean implements Serializable {
+
     private final ItemsDao ItemsDao = new ItemsDao();
     private int id;
     private int quantity;
@@ -24,53 +25,60 @@ public class AddEditItemsBean implements Serializable{
     private int cost;
     private String trader;
 
-    
+    int item_id;
+    Items item = new Items();
+    private final ItemDetailsDao itemDetailsDao = new ItemDetailsDao();
 
-    public AddEditItemsBean() {        
+    @Inject
+    private beans.SessionBean sessionBean;
+
+    public AddEditItemsBean() {
     }
-    
+
     @PostConstruct
-    public void init(){                
+    public void init() {
+       int item_id=sessionBean.getSelectedItemId();
         try {
-            
-            if(id > 0){
-            Items item = new Items();
-           item.getId();
-           item.getModel();
-           item.getQuantity();
-           item.getWeight();
-           item.getCirat();
-           item.getCost();
-           item.getColor();
-           item.getTrader();
-           
+            if(item_id>0){
+            item = itemDetailsDao.buildItem(item_id);
+            id=item.getId();
+            model=item.getModel();
+            quantity=item.getQuantity();
+            weight=item.getWeight();
+            cirat=item.getCirat();
+            color=item.getColor();
+            cost=item.getCost();
+            trader=item.getTrader();
             }
         } catch (Exception ex) {
             Logger.getLogger(AddEditItemsBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public int getId(){
+
+    public int getId() {
         return this.id;
-    }
-    public void setId(int id){
-        this.id=id;
-    }
-    
-        public int getQuantity(){
-        return this.id;
-    }
-    public void setQuantity(int quantity){
-        this.quantity=quantity;
     }
 
-            public String getModel(){
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getModel() {
         return this.model;
     }
-    public void setModel(String model){
-        this.model=model;
+
+    public void setModel(String model) {
+        this.model = model;
     }
-    
+
     /**
      * @return the weight
      */
@@ -126,7 +134,7 @@ public class AddEditItemsBean implements Serializable{
     public void setCost(int cost) {
         this.cost = cost;
     }
-        
+
     public String getTrader() {
         return trader;
     }
@@ -137,21 +145,19 @@ public class AddEditItemsBean implements Serializable{
 
     public void saveItems() {
         try {
-           Items item = new Items();
-           
-          
+            int item_id=sessionBean.getSelectedItemId();
+            Items item = new Items();
 
-           item.setModel(model);
-           item.setQuantity(quantity);
-           item.setWeight(weight);
-           item.setCirat(cirat);
-           item.setColor(color);
-           item.setCost(cost);
-           item.setTrader(trader);
+            item.setModel(model);
+            item.setQuantity(quantity);
+            item.setWeight(weight);
+            item.setCirat(cirat);
+            item.setColor(color);
+            item.setCost(cost);
+            item.setTrader(trader);
 
-            
-            if (getId() > 0) {
-                ItemsDao.updateItem(item);
+            if (item_id > 0) {
+                ItemsDao.updateItem(item, item_id);
             } else {
                 ItemsDao.insertItem(item);
             }
@@ -159,7 +165,5 @@ public class AddEditItemsBean implements Serializable{
             Logger.getLogger(AddEditItemsBean.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-
-       
     }
 }

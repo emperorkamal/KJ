@@ -20,7 +20,7 @@
                                  columns="3"                              
                                  dir="#{langBean.dir}">
 
-                        <p:outputLabel value="model:" for="model"/>
+                        <p:outputLabel value="#{msgs.model}" for="model"/>
                         <p:inputText id="model"
                                      value="#{addEditItemsBean.model}"
                                      style="width:350px"
@@ -30,7 +30,7 @@
                         </p:inputText>
                         <h:message for="model" styleClass="errorMsg"/>
 
-                        <p:outputLabel value="quantity:" for="quantity" />
+                        <p:outputLabel value="#{msgs.quantity}" for="quantity" />
                         <p:inputText id="quantity"
                                      value="#{addEditItemsBean.quantity}"
                                      style="width:350px"
@@ -40,7 +40,7 @@
                         </p:inputText>
                         <h:message for="quantity" styleClass="errorMsg"/>
                         
-                        <p:outputLabel value="weight:" for="weight" />
+                        <p:outputLabel value="#{msgs.weight}" for="weight" />
                         <p:inputText id="weight"
                                      value="#{addEditItemsBean.weight}"
                                      style="width:350px"
@@ -50,7 +50,7 @@
                         </p:inputText>
                         <h:message for="weight" styleClass="errorMsg"/>
                         
-                        <p:outputLabel value="cirat:" for="cirat" />
+                        <p:outputLabel value="#{msgs.cirat}" for="cirat" />
                         <p:inputText id="cirat"
                                      value="#{addEditItemsBean.cirat}"
                                      style="width:350px"
@@ -60,7 +60,7 @@
                         </p:inputText>
                         <h:message for="cirat" styleClass="errorMsg"/>
                         
-                        <p:outputLabel value="cost:" for="cost" />
+                        <p:outputLabel value="#{msgs.cost}" for="cost" />
                         <p:inputText id="cost"
                                      value="#{addEditItemsBean.cost}"
                                      style="width:350px"
@@ -70,7 +70,7 @@
                         </p:inputText>
                         <h:message for="cost" styleClass="errorMsg"/>
                         
-                        <p:outputLabel value="color:" for="color" />
+                        <p:outputLabel value="#{msgs.color}" for="color" />
                         <p:inputText id="color"
                                      value="#{addEditItemsBean.color}"
                                      style="width:350px"
@@ -80,15 +80,15 @@
                         </p:inputText>
                         <h:message for="color" styleClass="errorMsg"/>
                         
-                        <p:outputLabel value="trader:" for="trader" />
+                        <p:outputLabel value="#{msgs.trader}" for="trader" />
                         <p:inputText id="trader"
-                                     value="#{addEditItemsBean.color}"
+                                     value="#{addEditItemsBean.trader}"
                                      style="width:350px"
                                      required="true"
                                      maxlength="512"
                                      requiredMessage="error">
                         </p:inputText>
-                        <h:message for="color" styleClass="errorMsg"/>
+                        <h:message for="trader" styleClass="errorMsg"/>
                                           
                     </h:panelGrid>
                 </p:panel>
