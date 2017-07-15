@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>LOGIN PAGE</title>
+</h:head>
+<h:body>
+     <ui:decorate template="/app_templates/login_template.xhtml">   
+	<h:form>
+		<h3>Login Page</h3>
+                
+		<h:outputText value="Username" />
+		<h:inputText id="username" value="#{login1.user}"></h:inputText>
+		<h:message for="username"></h:message>
+		<br></br><br></br>
+		
+		<h:outputText value="Password" />
+                <h:inputSecret id="password" value="#{login1.pwd}"></h:inputSecret>
+		<h:message for="password"></h:message>
+		<br></br><br></br>
+		
+		<h:commandButton action="#{login1.validateUsernamePassword}"
+			value="Login"></h:commandButton>
+	</h:form>
+         </ui:decorate>
+</h:body>
+</html>
+

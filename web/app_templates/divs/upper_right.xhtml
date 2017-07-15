@@ -6,9 +6,7 @@
             <h:commandLink style="float:left"
                            value="#{langBean.linkLabel}"
                            actionListener="#{langBean.toggleLanguage()}"/>        
-            <h:commandLink value="#{msgs.logout}"  
-                           style="float:right"
-                           action="#{sessionBean.logout()}"/> 
+              <h:commandLink action="#{login1.logout}" value="Logout"></h:commandLink> 
         </h:panelGrid>
     </h:form>               
 </ui:composition>    
