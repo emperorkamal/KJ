@@ -98,7 +98,7 @@
                                                      styleClass="commandButton"
                                                      style="float:#{langBean.styleFloat}" 
                                                      disabled="#{itemsBean.selectedItem==null}"
-                                                     
+                                                     actionListener="#{itemsBean.saveSelectedItemId()}"
                                                      action="sale_item"
                                                      />
                                     <p:commandButton value="#{msgs.delete}"

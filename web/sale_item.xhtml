@@ -12,7 +12,79 @@
         <ui:decorate template="/app_templates/app_template.xhtml">                                            
             <h:form id="items_form">
                 
+                <p:panel header="#{msgs.sale_item}"                            
+                         style="min-height:400px; 
+                         direction:#{langBean.dir};margin-top:10px; font-size:15pt">
+                    <h:panelGrid id="sale_gold"
+                                 style="float: #{langBean.styleFloat};" 
+                                 columns="2"                              
+                                 dir="#{langBean.dir}">
+
+                        <p:outputLabel value="#{msgs.model}" />
+                        <p:outputLabel value="#{saleItemBean.model}" />
+                        
+
+                        <p:outputLabel value="#{msgs.quantity}"  />
+                        <p:outputLabel value="#{saleItemBean.quantity}" />
+                       
+                        
+                        <p:outputLabel value="#{msgs.weight}"  />
+                        <p:outputLabel value="#{saleItemBean.weight}" />
+                        
+                        
+                        <p:outputLabel value="#{msgs.cirat}"/>
+                        <p:outputLabel value="#{saleItemBean.cirat}" />
+                        
+                        
+                        <p:outputLabel value="#{msgs.cost}" />
+                        <p:outputLabel value="#{saleItemBean.cost}" />
+                        
+                        
+                        <p:outputLabel value="#{msgs.color}"  />
+                        <p:outputLabel value="#{saleItemBean.color}" />
+                        
+                        
+                        <p:outputLabel value="#{msgs.trader}"  />
+                        <p:outputLabel value="#{saleItemBean.trader}" />
+                        
+                        <p:outputLabel value="#{msgs.profits}"  />
+                        <p:inputText id="profit"
+                                     value="#{saleItemBean.cost}"
+                                     style="width:350px"
+                                     required="true"
+                                     maxlength="512"
+                                     requiredMessage="error"
+                                     onclick="#{saleItemBean.updatePrice()}">
+                        </p:inputText>
+                        
+                        <h:message for="profit" styleClass="errorMsg"/>
+                        <p:commandButton value="calculate"
+                                 icon="ui-icon-cancel"  
+                                 iconPos="#{langBean.styleFloat}"
+                                 styleClass="commandButton"
+                                 
+                                 style="float:#{langBean.styleFloat}" 
+                                 actionListener="#{saleItemBean.updatePrice()}"
+                                 />
+                        
+                        
+                        <p:outputLabel value="#{msgs.price_without_cost}"  />                                          
+                        <p:outputLabel value="#{saleItemBean.price_without_cost}"  />
+                        <p:outputLabel value="#{msgs.price_with_cost}"  />                                          
+                        <p:outputLabel value="#{saleItemBean.price_with_cost}"  />
+                        <p:outputLabel value="#{msgs.total_price}"  />                                          
+                        <p:outputLabel value="#{saleItemBean.total_price}"  />
+                    </h:panelGrid>
+                    
                 
+                </p:panel>
+                <p:commandButton value="#{msgs.cancel}"
+                                 icon="ui-icon-cancel"  
+                                 iconPos="#{langBean.styleFloat}"
+                                 styleClass="commandButton"
+                                 immediate="true" 
+                                 style="float:#{langBean.styleFloat}" 
+                                 action="gold_sector"/>      
 
 
             </h:form>        

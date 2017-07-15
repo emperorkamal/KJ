@@ -31,9 +31,9 @@ public class ItemDetailsBean {
     private String model;
     private int quantity;
     private float weight;
-    private String cirat;
+    private float cirat;
     private String color;
-    private int cost;
+    private float cost;
      private String trader;
 
     
@@ -129,14 +129,14 @@ public class ItemDetailsBean {
     /**
      * @return the cirat
      */
-    public String getCirat() {
+    public float getCirat() {
         return cirat;
     }
 
     /**
      * @param cirat the cirat to set
      */
-    public void setCirat(String cirat) {
+    public void setCirat(float cirat) {
         this.cirat = cirat;
     }
 
@@ -157,14 +157,14 @@ public class ItemDetailsBean {
     /**
      * @return the cost
      */
-    public int getCost() {
+    public float getCost() {
         return cost;
     }
 
     /**
      * @param cost the cost to set
      */
-    public void setCost(int cost) {
+    public void setCost(float cost) {
         this.cost = cost;
     }
     

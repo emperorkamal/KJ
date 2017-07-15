@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>LOGIN PAGE</title>
+    <title>#{msgs.k_and_j}</title>
 </h:head>
 <h:body>
      <ui:decorate template="/app_templates/login_template.xhtml">   
@@ -25,6 +25,9 @@
 		
 		<h:commandButton action="#{login1.validateUsernamePassword}"
 			value="Login"></h:commandButton>
+                <h:commandButton value="#{msgs.login_admin}" action="add_access.xhtml" />
+                            <input type="reset" value="#{msgs.reset}"/>
+                            
 	</h:form>
          </ui:decorate>
 </h:body>

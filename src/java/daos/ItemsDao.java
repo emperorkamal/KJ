@@ -44,9 +44,9 @@ public class ItemsDao extends MySQLAccess {
         item.setModel(rs.getString("model"));
         item.setQuantity(rs.getInt("quantity"));
         item.setWeight(rs.getFloat("weight"));
-        item.setCirat(rs.getString("cirat"));
+        item.setCirat(rs.getFloat("cirat"));
         item.setColor(rs.getString("color"));
-        item.setCost(rs.getInt("cost"));
+        item.setCost(rs.getFloat("cost"));
         item.setTrader(rs.getString("trader"));
 
         return item;
@@ -62,9 +62,9 @@ public class ItemsDao extends MySQLAccess {
             ps.setString(1, item.getModel());
             ps.setInt(2, item.getQuantity());
             ps.setFloat(3, item.getWeight());
-            ps.setString(4, item.getCirat());
+            ps.setFloat(4, item.getCirat());
             ps.setString(5, item.getColor());
-            ps.setInt(6, item.getCost());
+            ps.setFloat(6, item.getCost());
             ps.setString(7, item.getTrader());
 
             ps.executeUpdate();
@@ -86,9 +86,9 @@ public class ItemsDao extends MySQLAccess {
             ps.setInt(3, item.getQuantity());
             
             ps.setFloat(4, item.getWeight());
-            ps.setString(5, item.getCirat());
+            ps.setFloat(5, item.getCirat());
             ps.setString(6, item.getColor());
-            ps.setInt(7, item.getCost());
+            ps.setFloat(7, item.getCost());
             ps.setString(8, item.getTrader());
             ps.setInt(9, item_id);
             ps.executeUpdate();
