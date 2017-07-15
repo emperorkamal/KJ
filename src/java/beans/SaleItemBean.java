@@ -83,6 +83,7 @@ private int id ;
     }
 
     public void  updatePrice (){
+        setProfit(profit);
     total_price=(float) ((weight*1228.0*32.15*0.71*cirat)/1000.0)+cost+profit;
         System.out.println(total_price);
     }
