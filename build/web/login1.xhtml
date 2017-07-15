@@ -25,9 +25,13 @@
 		
 		<h:commandButton action="#{login1.validateUsernamePassword}"
 			value="Login"></h:commandButton>
+<<<<<<< HEAD
                 <h:commandButton value="#{msgs.login_admin}" action="add_access.xhtml" />
                             <input type="reset" value="#{msgs.reset}"/>
                             
+=======
+                <h:commandButton value="#{msgs.login_admin}" action="#{login1.validateUsernamePassword}" />
+>>>>>>> dd5d8d6890a55728905c54bfba5eb0db3e8d7dce
 	</h:form>
          </ui:decorate>
 </h:body>

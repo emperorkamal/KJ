@@ -20,6 +20,24 @@ public class Login1 implements Serializable {
 	private String pwd;
 	private String msg;
 	private String user;
+        private String adminuser;
+        private String adminpassword;
+        
+        public String getAdminUser(){
+        return adminuser;
+        }
+        
+        public void setAdminUser(String adminuser){
+        this.adminuser=adminuser;
+        }
+        
+                public String getAdminPass(){
+        return adminpassword;
+        }
+        
+        public void setAdminPass(String adminpassword){
+        this.adminpassword=adminpassword;
+        }
 
 	public String getPwd() {
 		return pwd;
@@ -48,6 +66,8 @@ public class Login1 implements Serializable {
 	//validate login
 	public String validateUsernamePassword() {
 		boolean valid = LoginDAO.validate(user, pwd);
+                
+               
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", user);
@@ -59,7 +79,9 @@ public class Login1 implements Serializable {
 							"Incorrect Username and Passowrd",
 							"Please enter correct username and Password"));
 			return "login1";
-		}
+		} 
+                
+                
 	}
 
 	//logout event, invalidate session

@@ -65,6 +65,28 @@
                             </p:lightBox>
                         </h:panelGrid>
                     </p:fieldset>
+                   
+        		<script type="text/javascript" src="https://www.bullionvault.com/chart/bullionvaultchart.js" ></script>
+		<script type="text/javascript" >
+			var options = {
+				bullion: 'gold',
+				currency: 'USD',
+				timeframe: '1w',
+				chartType: 'line',
+				miniChartModeAxis : 'oz',
+				referrerID: 'MYUSERNAME',
+				containerDefinedSize: true,
+				miniChartMode: false,
+				displayLatestPriceLine: true,
+				switchBullion: true,
+				switchCurrency: true,
+				switchTimeframe: true,
+				switchChartType: false,
+				exportButton: false
+			};
+			var chartBV = new BullionVaultChart(options, 'embed');
+		</script>
+                        <div id="embed" style="height: 350px; width: 550px; "></div>
                 </h:form>
             </f:view> 
         </ui:decorate>
