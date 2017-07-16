@@ -75,7 +75,7 @@ private int id ;
             
             price_without_cost=(float) ((weight*1228.0*32.15*0.71*cirat)/1000.0);
             price_with_cost=(float) ((weight*1228.0*32.15*0.71*cirat)/1000.0)+cost;
-            total_price=(float) ((weight*1228.0*32.15*0.71*cirat)/1000.0)+cost+cost;
+            total_price=(float) ((weight*1228.0*32.15*0.71*cirat)/1000.0)+cost+profit;
             }
         } catch (Exception ex) {
             Logger.getLogger(ItemDetailsBean.class.getName()).log(Level.SEVERE, null, ex);
