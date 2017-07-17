@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.Items;
+import models.SoldItems;
 
 public class ItemDetailsDao extends MySQLAccess {
     
@@ -123,5 +124,9 @@ public class ItemDetailsDao extends MySQLAccess {
         } catch (Exception ex) {
             Logger.getLogger(ItemsDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public void insertSoldItem(SoldItems item) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

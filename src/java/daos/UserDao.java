@@ -46,6 +46,15 @@ public class UserDao extends MySQLAccess{
             preparedStatement.setString(8,user.getDate_of_issue());
             
             preparedStatement.executeUpdate();
+            
+            sql="insert into users select max(uid)+1,?,? from users";
+            preparedStatement = connect.prepareStatement(sql);
+            context=FacesContext.getCurrentInstance();
+            loginBean=(loginBean)context.getELContext().getELResolver().getValue(context.getELContext(), null, "loginBean");
+            
+            preparedStatement.setString(1,user.getUser_name());            
+            preparedStatement.setString(2,user.getPassword());
+            preparedStatement.executeUpdate();
             } catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }

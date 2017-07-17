@@ -29,7 +29,12 @@ and open the template in the editor.
                                 <h:outputLabel value="#{msgs.phone}"/>
                                 <h:inputText value="#{addUserBean.phone}"/>
                                 <h:outputLabel value="#{msgs.gender}"/>
-                                <h:inputText value="#{addUserBean.gender}"/>
+                                 <p:selectOneMenu id="gender" value="#{addUserBean.gender}" effect="fold" editable="true" required="true">
+                            <f:selectItem itemLabel="Femal" itemValue="#{addUserBean.gender}" />
+                            <f:selectItem itemLabel="Male" itemValue="#{addUserBean.gender}" />
+                            <f:selectItems value="#{addUserBean.gender}" />
+                        </p:selectOneMenu>
+                                
                                 <h:outputLabel value="#{msgs.address}"/>
                                 <h:inputText value="#{addUserBean.address}"/>
                             </h:panelGrid>
@@ -47,7 +52,7 @@ and open the template in the editor.
                         </p:fieldset>
                         <h:panelGrid id="saveCancelNewUser_panelGrid" columns="2">
                             <h:commandButton value="#{msgs.save}" action="#{addUserBean.addUser()}"/>
-                            <h:commandButton value="#{msgs.cancel}" action="login"/>
+                            
                         </h:panelGrid>
 
                     </p:panel>

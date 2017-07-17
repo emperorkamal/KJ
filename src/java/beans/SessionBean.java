@@ -26,7 +26,15 @@ public class SessionBean implements Serializable {
     private String password;
 
     // Session attributes
+    private float profit;
 
+    public float getProfit() {
+        return profit;
+    }
+
+    public void setProfit(float profit) {
+        this.profit = profit;
+    }
     private Connection connection; 
     private int selectedItemId; 
     private int menuIndex = 0;
