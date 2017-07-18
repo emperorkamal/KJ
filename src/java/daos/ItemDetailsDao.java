@@ -51,6 +51,48 @@ public class ItemDetailsDao extends MySQLAccess {
         return item;
     }
     
+    public SoldItems buildSoldItem(int item_id) throws Exception {
+        
+        SoldItems item = new SoldItems();
+        try {
+            Connection conn = getConnection();
+            
+            String sql = "SELECT * FROM SOLD_ITEM WHERE ID=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, item_id);
+            
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+            item = populateSoldItems(rs);
+            }
+            rs.close();
+            ps.close();
+            
+            return item;
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+    }
+    
+     private SoldItems populateSoldItems(ResultSet rs) throws SQLException {
+        
+        SoldItems item = new SoldItems();
+        
+        item.setId(rs.getInt("id"));
+        item.setModel(rs.getString("model"));
+        item.setWeight(rs.getFloat("weight"));
+        item.setCirat(rs.getFloat("cirat"));
+        item.setColor(rs.getString("color"));
+        item.setCost(rs.getFloat("cost"));
+        item.setTrader(rs.getString("trader"));
+        item.setProfit(rs.getFloat("profit"));
+        item.setPrice_without_cost(rs.getFloat("price_without_cost"));
+        item.setPrice_with_cost(rs.getFloat("price_with_cost"));
+        item.setTotal_price(rs.getFloat("total_price"));
+        return item;
+    }
+     
+     
     public void insertItem(Items item) throws SQLException {
         
         try {

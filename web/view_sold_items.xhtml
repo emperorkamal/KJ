@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{msgs.app_title}</title>
+    </h:head>
+    <h:body>
+        <ui:decorate template="/app_templates/app_template.xhtml">                                            
+                <h:form id="items_form">
+                    
+
+                    <p:dataTable id="items_table"
+                                 class="dataTable"
+                                 value="#{soldItemsBean.list}"
+                                 selection="#{soldItemsBean.soldSelectedItem}"
+                                 rowKey="#{item.id}"                    
+                                 var="item"   
+                                 rows="5"     
+                                 rowsPerPageTemplate="1,2,3,4,5,6"
+                                 dir="#{langBean.dir}"
+                                 emptyMessage="No Item Found"
+                                 paginator="true"
+                                 paginatorPosition="top" 
+                                 paginatorTemplate="#{langBean.isEnglish? '{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}' : '{RowsPerPageDropdown} {LastPageLink} {NextPageLink} {PageLinks} {PreviousPageLink} {FirstPageLink}'}"
+                                 >
+
+                        <p:ajax event="rowSelectRadio"
+                                update=":items_form:items_table"/>
+
+                        <f:facet name="header" id="header" >
+                            Gold Item
+                        </f:facet>
+
+                        <p:column selectionMode="single" style="width:1%"/>
+                        <p:column headerText="#{msgs.item_id}"
+                                  style="width:4%"
+                                  filterBy="#{item.id}"
+                                  filterMatchMode="contains"
+                                  sortBy="#{item.id}"> 
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+
+                        <p:column headerText="#{msgs.model}"
+                                  style="width:10%"
+                                  filterBy="#{item.model}"
+                                  filterMatchMode="contains"
+                                  sortBy="#{bus.busID}"> 
+                            <h:outputText value="#{item.model}"/>  
+                        </p:column>
+
+                        
+                        
+                        <p:column headerText="#{msgs.weight}"
+                                  style="width:10%"
+                                  filterBy="#{item.weight}"
+                                  filterMatchMode="contains"
+                                  sortBy="#{item.id}"> 
+                            <h:outputText value="#{item.weight}"/>  
+                        </p:column>
+
+
+
+                        <f:facet name="footer">
+                            <p:toolbar style="border: none">
+                                <p:toolbarGroup align="#{languageBean.screenLeft}">
+                                    <p:commandButton value="#{msgs.details}"
+                                                     icon="ui-icon-pencil"                                  
+                                                     iconPos="#{langBean.styleFloat}"
+                                                     styleClass="commandButton"
+                                                     style="float:#{langBean.styleFloat}" 
+                                                     disabled="#{soldItemsBean.soldSelectedItem==null}"
+                                                     actionListener="#{soldItemsBean.saveSelectedItemId()}"
+                                                     action="sold_item_details"
+                                                     />
+                                    
+                                    
+                                   
+                                    <p:commandButton value="#{msgs.restored}"
+                                                     icon="ui-icon-minus"                                  
+                                                     iconPos="#{langBean.styleFloat}"
+                                                     styleClass="commandButton"
+                                                     style="float:#{langBean.styleFloat}" 
+                                                     disabled="#{soldItemsBean.soldSelectedItem==null}"
+                                                     onclick="return confirm('#{msgs.confirm_delete_item}');"
+                                                     actionListener="#{soldItemsBean.deleteSelectedItem()}"
+                                                     action="gold_sector" />
+                                    
+                                    
+                                    
+                                    
+                                </p:toolbarGroup>
+                            </p:toolbar>
+                        </f:facet>
+                    </p:dataTable>
+
+                    <p:commandButton value="back"
+                                                     icon="ui-icon-minus"                                  
+                                                     iconPos="#{langBean.styleFloat}"
+                                                     styleClass="commandButton"
+                                                     style="float:#{langBean.styleFloat}" 
+                                                     action="gold_sector" />
+                     
+                    <p:dock itemWidth="100">
+                        <p:menuitem value="Home" icon="/resources/images/HomeButton.png" url="http://localhost:8080/kj/faces/welcome.xhtml"/>
+                        <p:menuitem value="GOLD" icon="/resources/images/gold_icon.png" url="http://www.kitco.com/charts/livegold.html"/>
+                        <p:menuitem value="DIAMON" icon="/resources/images/diamond_icon.png" url="http://localhost:8080/kj/faces/gold_sector.xhtml"/>
+                    </p:dock>
+
+
+                </h:form>        
+        </ui:decorate>
+
+    </h:body>
+   
+</html>

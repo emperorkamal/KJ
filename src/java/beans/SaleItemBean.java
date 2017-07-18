@@ -137,6 +137,7 @@ private int id ;
 
             
                 Insertitemdao.insertSoldItem(item);
+                deleteSelectedItem();
                                             
         } catch (Exception ex) {
             Logger.getLogger(AddEditItemsBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -144,7 +145,14 @@ private int id ;
 
     }
     
-    
+    public void deleteSelectedItem() {
+        try {
+            itemdao.deleteItem(selectedItem.getId());
+            sessionBean.navigate("/gold_sector.xhtml");
+        } catch (Exception ex) {
+            //sar t3deel hon bel information bean kant bus w 5aletha driver
+            Logger.getLogger(ItemsBean.class.getName()).log(Level.SEVERE, null, ex);
+        }}
     public int getId() {
         return id;
     }
