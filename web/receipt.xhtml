@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{msgs.app_title}</title>
+    </h:head>
+    <h:body>
+        <ui:decorate template="/app_templates/app_template.xhtml">                                            
+            <h:form id="items_form">
+                
+                <p:panel header="#{msgs.printing_receipt}"                            
+                         style="min-height:400px; 
+                         direction:#{langBean.dir};margin-top:10px; font-size:15pt">
+                    <p:fieldset legend="#{msgs.customer_info}" style="margin-bottom:20px">
+                    <h:panelGrid id="customer_info"
+                                 style="float: #{langBean.styleFloat};" 
+                                 columns="2"                              
+                                 dir="#{langBean.dir}">
+
+                        
+                        <p:outputLabel value="#{msgs.customer_name}" />
+                        <p:inputText id="profit"
+                                     value=""
+                                     style="width:350px"
+                                     required="true"
+                                     maxlength="512">
+                        </p:inputText>
+                        
+                        <p:outputLabel value="#{msgs.customer_phone}" />
+                        <p:inputText id="profit"
+                                     value=""
+                                     style="width:350px"
+                                     required="true"
+                                     maxlength="512">
+                        </p:inputText>
+                        
+                        <p:outputLabel value="#{msgs.customer_address}" />
+                        <p:inputText id="profit"
+                                     value=""
+                                     style="width:350px"
+                                     required="true"
+                                     maxlength="512">
+                        </p:inputText>
+                    </h:panelGrid>
+                        </p:fieldset>
+                    
+                    <p:fieldset legend="#{msgs.item_info}" style="margin-bottom:20px">
+                    <h:panelGrid id="sale_gold"
+                                 style="float: #{langBean.styleFloat};" 
+                                 columns="2"                              
+                                 dir="#{langBean.dir}">
+                    
+                        <p:outputLabel value="#{msgs.model}" />
+                        <p:outputLabel value="#{saleItemBean.model}" />
+                        
+                        <p:outputLabel value="#{msgs.weight}"  />
+                        <p:outputLabel value="#{saleItemBean.weight}" />
+                        
+                        <p:outputLabel value="#{msgs.cirat}"/>
+                        <p:outputLabel value="#{saleItemBean.cirat}" />
+                        
+                        <p:outputLabel value="#{msgs.color}"  />
+                        <p:outputLabel value="#{saleItemBean.color}" />
+                        
+                        <p:outputLabel value="#{msgs.price_without_cost}"  />                                          
+                        <p:outputLabel value="#{saleItemBean.price_without_cost}"  />
+                        
+                        <p:outputLabel value="#{msgs.total_price}"  />                                          
+                        <p:outputLabel value="#{saleItemBean.total_price}"  />
+                    </h:panelGrid>
+                    
+                </p:fieldset>
+                    
+                    <p:commandButton value="#{msgs.print}"
+                                 icon="ui-icon-cancel"  
+                                 iconPos="#{langBean.styleFloat}"
+                                 styleClass="commandButton"
+                                 style="float:#{langBean.styleFloat}" 
+                                 action="gold_sector.xhtml"
+                                 />   
+                    
+                </p:panel>
+               
+                 
+
+
+            </h:form>        
+        </ui:decorate>
+
+    </h:body>
+</html>

@@ -49,23 +49,14 @@
                         
                         <p:outputLabel value="#{msgs.profits}"  />
                         <p:inputText id="profit"
-                                     value="#{saleItemBean.profit}"
+                                     value="#{sessionBean.profit}"
                                      style="width:350px"
                                      required="true"
-                                     maxlength="512"
-                                     requiredMessage="error"
-                                     onclick="#{saleItemBean.updatePrice()}">
+                                     maxlength="512">
                         </p:inputText>
                         
-                        <h:message for="profit" styleClass="errorMsg"/>
-                        <p:commandButton value="calculate"
-                                 icon="ui-icon-cancel"  
-                                 iconPos="#{langBean.styleFloat}"
-                                 styleClass="commandButton"
-                                 
-                                 style="float:#{langBean.styleFloat}" 
-                                 actionListener="#{saleItemBean.updatePrice()}"
-                                 />
+                       
+                        
                         
                         
                         <p:outputLabel value="#{msgs.price_without_cost}"  />                                          
@@ -78,12 +69,28 @@
                     
                 
                 </p:panel>
+                <p:commandButton value="calculate"
+                                 icon="ui-icon-cancel"  
+                                 iconPos="#{langBean.styleFloat}"
+                                 styleClass="commandButton"
+                                 style="float:#{langBean.styleFloat}" 
+                                 actionListener="#{saleItemBean.updatePrice(item_id)}"
+                                 />
+                 <p:commandButton value="confirm sale"
+                                 icon="ui-icon-cancel"  
+                                 iconPos="#{langBean.styleFloat}"
+                                 styleClass="commandButton"
+                                 style="float:#{langBean.styleFloat}" 
+                                 actionListener="#{saleItemBean.saveItem()}"
+                                 action="receipt.xhtml"
+                                 />
                 <p:commandButton value="#{msgs.cancel}"
                                  icon="ui-icon-cancel"  
                                  iconPos="#{langBean.styleFloat}"
                                  styleClass="commandButton"
                                  immediate="true" 
                                  style="float:#{langBean.styleFloat}" 
+                                 actionListener="#{sessionBean.setProfit(0.0)}"
                                  action="gold_sector"/>      
 
 

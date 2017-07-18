@@ -84,6 +84,26 @@ public class Login1 implements Serializable {
                 
 	}
 
+        public String validateUsernamePasswordAdmin() {
+		boolean valid = LoginDAO.validateAdmin(user, pwd);
+                
+               
+		if (valid) {
+			HttpSession session = SessionUtils.getSession();
+			session.setAttribute("username", user);
+			return "add_access";
+		} else {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Incorrect Username and Passowrd",
+							"Please enter correct username and Password"));
+			return "login1";
+		} 
+                
+                
+	}
+        
 	//logout event, invalidate session
 	public String logout() {
 		HttpSession session = SessionUtils.getSession();

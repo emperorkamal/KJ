@@ -8,16 +8,21 @@ import daos.ItemDetailsDao;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import daos.ItemsDao;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.SessionBean;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import models.Items;
+import models.SoldItems;
 
 /**
  *
@@ -37,7 +42,7 @@ private int id ;
      private float price_without_cost;
      private float price_with_cost;
      private float total_price;
-     private float profit;
+     public float profit;
 
     
 
@@ -47,6 +52,7 @@ private int id ;
      Items item=new Items();
     private Items selectedItem;
     private final ItemDetailsDao itemdao = new ItemDetailsDao();
+    private final ItemsDao Insertitemdao = new ItemsDao();
     //public Items item=new Items();
     /**
      * Creates a new instance of ItemDetailsBean
@@ -61,7 +67,9 @@ private int id ;
     public void init() {
         
         int item_id=sessionBean.getSelectedItemId();
+        profit=sessionBean.getProfit();
         try {
+            
             if(item_id>0){
             item = itemdao.buildItem(item_id);
             id=item.getId();
@@ -73,6 +81,7 @@ private int id ;
             cost=item.getCost();
             trader=item.getTrader();
             
+            profit=sessionBean.getProfit();
             price_without_cost=(float) ((weight*1228.0*32.15*0.71*cirat)/1000.0);
             price_with_cost=(float) ((weight*1228.0*32.15*0.71*cirat)/1000.0)+cost;
             total_price=(float) ((weight*1228.0*32.15*0.71*cirat)/1000.0)+cost+profit;
@@ -82,14 +91,60 @@ private int id ;
         }
     }
 
-    public void  updatePrice (){
+    public void  updatePrice (int item_id) throws Exception{
+        //setProfit(sessionBean.getProfit());
         setProfit(profit);
+         item = itemdao.buildItem(item_id);
+            id=item.getId();
+            model=item.getModel();
+            quantity=item.getQuantity();
+            weight=item.getWeight();
+            cirat=item.getCirat();
+            color=item.getColor();
+            cost=item.getCost();
+            trader=item.getTrader();
+            //profit=sessionBean.getProfit();
+            price_without_cost=(float) ((weight*1228.0*32.15*0.71*cirat)/1000.0);
+            price_with_cost=(float) ((weight*1228.0*32.15*0.71*cirat)/1000.0)+cost;
     total_price=(float) ((weight*1228.0*32.15*0.71*cirat)/1000.0)+cost+profit;
+    reload();
         System.out.println(total_price);
     }
+    public void reload() throws IOException {
+    ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+    ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
+}
     /**
      * @return the id
      */
+    
+    public void saveItem() {
+        try {
+            int item_id=sessionBean.getSelectedItemId();
+            SoldItems item = new SoldItems();
+
+            item.setId(item_id);
+            item.setModel(model);
+            item.setWeight(weight);
+            item.setCirat(cirat);
+            item.setColor(color);
+            item.setCost(cost);
+            item.setTrader(trader);
+            item.setProfit(profit);
+            item.setPrice_without_cost(price_without_cost);
+            item.setPrice_with_cost(price_with_cost);
+            item.setTotal_price(total_price);
+
+            
+                Insertitemdao.insertSoldItem(item);
+                                            
+        } catch (Exception ex) {
+            Logger.getLogger(AddEditItemsBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    
     public int getId() {
         return id;
     }

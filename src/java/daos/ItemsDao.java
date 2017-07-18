@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.Items;
+import models.SoldItems;
 
 public class ItemsDao extends MySQLAccess {
 
@@ -113,6 +114,34 @@ public class ItemsDao extends MySQLAccess {
         }
     }
 
+     public void insertSoldItem(SoldItems sold_item) throws SQLException {
+
+        try {
+            Connection conn = getConnection();
+            String sql = "insert into sold_item values(?,?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, sold_item.getId());
+            ps.setString(2, sold_item.getModel());
+            ps.setFloat(3, sold_item.getWeight());
+            ps.setFloat(4, sold_item.getCirat());
+            ps.setString(5, sold_item.getColor());
+            ps.setFloat(6, sold_item.getCost());
+            ps.setString(7, sold_item.getTrader());
+            ps.setFloat(8, sold_item.getProfit());
+            ps.setFloat(9, sold_item.getPrice_without_cost());
+            ps.setFloat(10, sold_item.getPrice_with_cost());
+            ps.setFloat(11, sold_item.getTotal_price());
+            
+            
+
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+    }
+    
     public static void main(String[] args) throws Exception {
         try {
             ItemsDao dao = new ItemsDao();

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>#{msgs.app_title}</title>
     </h:head>
@@ -14,7 +15,7 @@
 
                 <p:panel header="gold sector"                            
                          style="min-height:400px; 
-                                direction:#{langBean.dir};margin-top:10px; font-size:10pt">
+                         direction:#{langBean.dir};margin-top:10px; font-size:10pt">
                     <h:panelGrid id="add_gold"
                                  style="float: #{langBean.styleFloat};" 
                                  columns="3"                              
@@ -39,7 +40,7 @@
                                      requiredMessage="error">
                         </p:inputText>
                         <h:message for="quantity" styleClass="errorMsg"/>
-                        
+
                         <p:outputLabel value="#{msgs.weight}" for="weight" />
                         <p:inputText id="weight"
                                      value="#{addEditItemsBean.weight}"
@@ -49,17 +50,16 @@
                                      requiredMessage="error">
                         </p:inputText>
                         <h:message for="weight" styleClass="errorMsg"/>
-                        
+
                         <p:outputLabel value="#{msgs.cirat}" for="cirat" />
-                        <p:inputText id="cirat"
-                                     value="#{addEditItemsBean.cirat}"
-                                     style="width:350px"
-                                     required="true"
-                                     maxlength="512"
-                                     requiredMessage="error">
-                        </p:inputText>
-                        <h:message for="cirat" styleClass="errorMsg"/>
+                        <p:selectOneMenu id="cirat" value="#{addEditItemsBean.cirat}" effect="fold" editable="true" required="true">
+                            <f:selectItem itemLabel="0.885" itemValue="#{addEditItemsBean.cirat}" />
+                            <f:selectItem itemLabel="0.790" itemValue="#{addEditItemsBean.cirat}" />
+                            <f:selectItem itemLabel="0.550" itemValue="#{addEditItemsBean.cirat}" />
+                            <f:selectItems value="#{addEditItemsBean.cirat}" />
+                        </p:selectOneMenu>
                         
+                        <p:outputLabel value=""/>
                         <p:outputLabel value="#{msgs.cost}" for="cost" />
                         <p:inputText id="cost"
                                      value="#{addEditItemsBean.cost}"
@@ -69,17 +69,17 @@
                                      requiredMessage="error">
                         </p:inputText>
                         <h:message for="cost" styleClass="errorMsg"/>
-                        
+
                         <p:outputLabel value="#{msgs.color}" for="color" />
-                        <p:inputText id="color"
-                                     value="#{addEditItemsBean.color}"
-                                     style="width:350px"
-                                     required="true"
-                                     maxlength="512"
-                                     requiredMessage="error">
-                        </p:inputText>
-                        <h:message for="color" styleClass="errorMsg"/>
+                        <p:selectOneMenu id="color" value="#{addEditItemsBean.color}" effect="fold" editable="true" required="true">
+                            <f:selectItem itemLabel="Yellow" itemValue="#{addEditItemsBean.color}" />
+                            <f:selectItem itemLabel="White" itemValue="#{addEditItemsBean.color}" />
+                            <f:selectItem itemLabel="Rose" itemValue="#{addEditItemsBean.color}" />
+                            <f:selectItems value="#{addEditItemsBean.color}" />
+                        </p:selectOneMenu>
+                        <p:outputLabel value=""/>
                         
+
                         <p:outputLabel value="#{msgs.trader}" for="trader" />
                         <p:inputText id="trader"
                                      value="#{addEditItemsBean.trader}"
@@ -89,7 +89,7 @@
                                      requiredMessage="error">
                         </p:inputText>
                         <h:message for="trader" styleClass="errorMsg"/>
-                                          
+
                     </h:panelGrid>
                 </p:panel>
 
@@ -100,7 +100,7 @@
                                  style="float:#{langBean.styleFloat}"
                                  actionListener="#{addEditItemsBean.saveItems()}"
                                  action="gold_sector"/>
-                                
+
                 <p:commandButton value="#{msgs.cancel}"
                                  icon="ui-icon-cancel"  
                                  iconPos="#{langBean.styleFloat}"

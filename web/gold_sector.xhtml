@@ -31,8 +31,8 @@
                         <p:ajax event="rowSelectRadio"
                                 update=":items_form:items_table"/>
 
-                        <f:facet name="header" id="header">
-                            GOLD ITEMS
+                        <f:facet name="header" id="header" >
+                            Gold Item
                         </f:facet>
 
                         <p:column selectionMode="single" style="width:1%"/>
@@ -110,6 +110,8 @@
                                                      onclick="return confirm('#{msgs.confirm_delete_item}');"
                                                      actionListener="#{itemsBean.deleteSelectedItem()}"
                                                      action="gold_sector" />
+                                    
+                                    
                                     
                                     
                                 </p:toolbarGroup>

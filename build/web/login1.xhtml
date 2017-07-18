@@ -232,6 +232,8 @@ div#loginform {
                <h:message for="password"></h:message>
                <h:commandButton action="#{login1.validateUsernamePassword}"
 			value="Login"></h:commandButton>
+               <h:commandButton action="#{login1.validateUsernamePasswordAdmin()}"
+                                value="Login as Adminstrator"></h:commandButton>
                
                
                 <div class="remember-forgot">
