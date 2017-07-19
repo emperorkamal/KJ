@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{msgs.app_title}</title>
+    </h:head>
+    <h:body>
+        <ui:decorate template="/app_templates/app_template.xhtml">  
+            <h:form id="add_gold">            
+                <p:messages id="msgs" closable="true" globalOnly="true"/>
+
+                <p:panel header="#{msgs.gold_sector}"                            
+                         style="min-height:400px; 
+                                direction:#{langBean.dir};margin-top:10px; font-size:10pt">
+                    <h:panelGrid id="add_gold"
+                                 style="float: #{langBean.styleFloat};" 
+                                 columns="2"                              
+                                 dir="#{langBean.dir}">
+
+                        <p:outputLabel value="#{msgs.model}" />
+                        <p:outputLabel value="#{soldItemDetailsBean.model}" />
+                        
+                        <p:outputLabel value="#{msgs.weight}"  />
+                        <p:outputLabel value="#{soldItemDetailsBean.weight}" />
+                        
+                        
+                        <p:outputLabel value="#{msgs.cirat}"/>
+                        <p:outputLabel value="#{soldItemDetailsBean.cirat}" />
+                        
+                        
+                        <p:outputLabel value="#{msgs.cost}" />
+                        <p:outputLabel value="#{soldItemDetailsBean.cost}" />
+                        
+                        
+                        <p:outputLabel value="#{msgs.color}"  />
+                        <p:outputLabel value="#{soldItemDetailsBean.color}" />
+                        
+                        
+                        <p:outputLabel value="#{msgs.trader}"  />
+                        <p:outputLabel value="#{soldItemDetailsBean.trader}" />
+                        
+                        <p:outputLabel value="#{msgs.profits}"  />
+                        <p:outputLabel value="#{soldItemDetailsBean.profit}" />
+                        
+                        <p:outputLabel value="#{msgs.price_without_cost}"  />
+                        <p:outputLabel value="#{soldItemDetailsBean.price_without_cost}" />
+                        
+                        <p:outputLabel value="#{msgs.price_with_cost}"  />
+                        <p:outputLabel value="#{soldItemDetailsBean.price_with_cost}" />
+                        
+                        <p:outputLabel value="#{msgs.total_price}"  />
+                        <p:outputLabel value="#{soldItemDetailsBean.total_price}" />
+                                          
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:commandButton value="#{msgs.done}"
+                                 styleClass="commandButton"
+                                 icon="ui-icon-disk"
+                                 iconPos="#{langBean.styleFloat}"
+                                 style="float:#{langBean.styleFloat}"
+                                 action="view_sold_items"/>
+                
+                                                                   
+            </h:form>
+        </ui:decorate>
+    </h:body>
+</html>
+

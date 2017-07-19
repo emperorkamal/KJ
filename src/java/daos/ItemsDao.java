@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,6 +54,48 @@ public class ItemsDao extends MySQLAccess {
         return item;
     }
 
+    public ArrayList<SoldItems> buildSoldItem() throws Exception {
+
+        ArrayList<SoldItems> list = new ArrayList<>();
+        try {
+            Connection conn = getConnection();
+
+            String sql = "SELECT * FROM SOLD_ITEM";
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(populateSoldItems(rs));
+            }
+
+            rs.close();
+            ps.close();
+
+            return list;
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+    }
+    
+    private SoldItems populateSoldItems(ResultSet rs) throws SQLException {
+
+        SoldItems item = new SoldItems();
+
+        item.setId(rs.getInt("id"));
+        item.setModel(rs.getString("model"));
+        item.setWeight(rs.getFloat("weight"));
+        item.setCirat(rs.getFloat("cirat"));
+        item.setColor(rs.getString("color"));
+        item.setCost(rs.getFloat("cost"));
+        item.setTrader(rs.getString("trader"));
+        item.setProfit(rs.getFloat("profit"));
+        item.setPrice_without_cost(rs.getFloat("price_without_cost"));
+        item.setPrice_with_cost(rs.getFloat("price_with_cost"));
+        item.setTotal_price(rs.getFloat("total_price"));
+        
+        return item;
+    }
     public void insertItem(Items item) throws SQLException {
 
         try {
@@ -114,6 +157,19 @@ public class ItemsDao extends MySQLAccess {
         }
     }
 
+    public void deleteSoldItem(int id) throws SQLException {
+        try {
+            Connection conn;
+            conn = getConnection();
+            String sql = "delete from kj.sold_item where id= ? ; ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+    }
      public void insertSoldItem(SoldItems sold_item) throws SQLException {
 
         try {
@@ -132,6 +188,7 @@ public class ItemsDao extends MySQLAccess {
             ps.setFloat(9, sold_item.getPrice_without_cost());
             ps.setFloat(10, sold_item.getPrice_with_cost());
             ps.setFloat(11, sold_item.getTotal_price());
+            
             
             
 

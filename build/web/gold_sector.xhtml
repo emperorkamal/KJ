@@ -92,14 +92,14 @@
                                                      actionListener="#{itemsBean.saveSelectedItemId()}"
                                                      action="add_edit_gold"
                                                      />
-                                    <p:commandButton value="#{msgs.sale}"
+                                    <p:commandButton value="#{msgs.sell}"
                                                      icon="ui-icon-pencil"                                  
                                                      iconPos="#{langBean.styleFloat}"
                                                      styleClass="commandButton"
                                                      style="float:#{langBean.styleFloat}" 
                                                      disabled="#{itemsBean.selectedItem==null}"
                                                      actionListener="#{itemsBean.saveSelectedItemId()}"
-                                                     action="sale_item"
+                                                     action="sell_item"
                                                      />
                                     <p:commandButton value="#{msgs.delete}"
                                                      icon="ui-icon-minus"                                  
@@ -127,9 +127,11 @@
                                      actionListener="#{sessionBean.setSelectedItemId(-1)}"
                                      action="add_edit_gold"/>     
                     <p:dock itemWidth="100">
-                        <p:menuitem value="Home" icon="/resources/images/HomeButton.png" url="http://localhost:8080/kj/faces/welcome.xhtml"/>
+                        <p:menuitem value="Home" icon="/resources/images/HomeButton.png" url="http://localhost:44299/kj/faces/welcome.xhtml"/>
                         <p:menuitem value="GOLD" icon="/resources/images/gold_icon.png" url="http://www.kitco.com/charts/livegold.html"/>
-                        <p:menuitem value="DIAMON" icon="/resources/images/diamond_icon.png" url="http://localhost:8080/kj/faces/gold_sector.xhtml"/>
+                        <p:menuitem value="DIAMON" icon="/resources/images/diamond_icon.png" url="http://localhost:44299/kj/faces/gold_sector.xhtml"/>
+                        <p:menuitem value="DIAMON" icon="/resources/images/sold.png" url="http://localhost:44299/kj/faces/view_sold_items.xhtml"/>
+                        
                     </p:dock>
 
 

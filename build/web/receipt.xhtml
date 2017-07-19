@@ -23,7 +23,7 @@
 
                         
                         <p:outputLabel value="#{msgs.customer_name}" />
-                        <p:inputText id="profit"
+                        <p:inputText id="custome_name"
                                      value=""
                                      style="width:350px"
                                      required="true"
@@ -31,7 +31,7 @@
                         </p:inputText>
                         
                         <p:outputLabel value="#{msgs.customer_phone}" />
-                        <p:inputText id="profit"
+                        <p:inputText id="customer_phone"
                                      value=""
                                      style="width:350px"
                                      required="true"
@@ -39,7 +39,7 @@
                         </p:inputText>
                         
                         <p:outputLabel value="#{msgs.customer_address}" />
-                        <p:inputText id="profit"
+                        <p:inputText id="customer_address"
                                      value=""
                                      style="width:350px"
                                      required="true"
@@ -75,17 +75,16 @@
                     
                 </p:fieldset>
                     
-                    <p:commandButton value="#{msgs.print}"
-                                 icon="ui-icon-cancel"  
-                                 iconPos="#{langBean.styleFloat}"
-                                 styleClass="commandButton"
-                                 style="float:#{langBean.styleFloat}" 
-                                 action="gold_sector.xhtml"
-                                 />   
+                    
                     
                 </p:panel>
                
-                 
+                 <p:commandButton value="#{msgs.done}"
+                                 styleClass="commandButton"
+                                 icon="ui-icon-disk"
+                                 iconPos="#{langBean.styleFloat}"
+                                 style="float:#{langBean.styleFloat}"
+                                 action="gold_sector"/>
 
 
             </h:form>        
