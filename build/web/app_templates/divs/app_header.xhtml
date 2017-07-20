@@ -1,14 +1,20 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html">             
-    <div style="color:#1F8BCC; font-size:34pt; float:left; top:12px;">
+    <div style="color:#000000; font-size:34pt; float:left; top:12px; font-style: oblique;">
         #{msgs.app_title}
     </div>
-    <h:graphicImage style="float:right;margin:3px;margin-top:7px;" 
+ 
+    <h:graphicImage  style="float: right;
+    margin: 0px;
+    margin-top: -8px;
+    height: 86px;
+    width: 251px;" 
                     library="images" 
-                    name="kj.png" 
-                    height="80px" 
+                    name="logo.png" 
+                    height="70px" 
                     width="260px"/><br/>
-    <h:outputLabel value="Welcome #{login1.user}"/>                  
+    
+    <h:outputLabel  value="Welcome #{login1.user}" style="color: #000000"/>                  
     
 </ui:composition>

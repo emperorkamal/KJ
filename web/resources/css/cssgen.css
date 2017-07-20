@@ -1,0 +1,76 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20-Jul-2017, 20:54:50
+    Author     : Kamal Jabari
+*/
+
+        
+     div#app_container {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+div#app_content {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+div#upper_left {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+div#upper_right {
+    background-color: rgba(255, 255, 255, 0);
+}   
+        body {
+   
+      background: url(./images/loginbg.jpg) no-repeat center center fixed; 
+      -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+        div#app_content {
+       width: 55% !important;
+    /* float: left; */
+    padding-left: 2em;
+    padding-right: 22em;
+}
+
+td.ui-selection-column {
+    padding: 1em !important;
+    margin-right: 2em !important;
+}
+
+.ui-datatable-tablewrapper {
+    padding: -1em !important;
+}
+.ui-datatable table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: auto !important;
+}
+
+.ui-datatable-odd {
+    background: none repeat scroll 0 0 #ffd400 !important;
+}
+
+.ui-widget-content {
+    border: 1px solid #000000 !important;
+    background: #ffffff;
+    color: #4f4f4f;
+}
+
+.ui-widget-header {
+    border: 1px solid #ffd400;
+    background: #c4c4c4 url(/kj/faces/javax.faces.resource/images/ui-bg_highlight-soft_100_c4c4c4_1x100.png?ln=primefaces-aristo) 50% 50% repeat-x;
+    background: #c4c4c4 linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    background: #ffd400 -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0))) !important;
+    background: #c4c4c4 -moz-linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    color: #333;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+}
+
