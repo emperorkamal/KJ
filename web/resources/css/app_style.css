@@ -112,7 +112,8 @@
     border-width:  thin;
     border-bottom: none !important;
     clear:both;
-    font-size:10pt;
+    font-size:12pt;
+    font-weight: bolder;
     width:99.8%;
     margin-top:10px;
     margin-bottom:15px;     
@@ -129,6 +130,16 @@
     display: inline;
 }
 
+.commandmyButton{ 
+    margin-top:5px;
+    margin-bottom:15px;
+    margin-right:5px;
+    margin-left:5px;
+    font-size:10pt;
+    width:120px;
+    height:30px;   
+    display: inline;
+}
 .errorMsg{
     color:red;
     font-weight:bold;
@@ -141,11 +152,3 @@
 }
 
 
-.ui-button-text-only .ui-button-text {
-    padding: 0.3em 0em !important;
-}
-#panel{
-        
-        float: right
-    }
-    

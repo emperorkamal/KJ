@@ -20,7 +20,7 @@ $(function() {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "././mail/contact_me.php",
+                url: "./resources/mail/contact_me.php",
                 type: "POST",
                 data: {
                     name: name,
@@ -31,8 +31,8 @@ $(function() {
                 cache: false,
                 success: function() {
                     // Success message
-                    $('#success').html("<div class='alert alert-success'>");
-                    $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                    $('#success').xhtml("<div class='alert alert-success'>");
+                    $('#success > .alert-success').xhtml("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
                     $('#success > .alert-success')
                         .append("<strong>Your message has been sent. </strong>");
@@ -44,19 +44,19 @@ $(function() {
                 },
                 error: function() {
                     // Fail message
-                    $('#success').html("<div class='alert alert-danger'>");
+                    $('#success').xhtml("<div class='alert alert-danger'>");
                     $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
                     $('#success > .alert-danger').append($("<strong>").text("Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!"));
                     $('#success > .alert-danger').append('</div>');
                     //clear all fields
                     $('#contactForm').trigger("reset");
-                },
+                }
             });
         },
         filter: function() {
             return $(this).is(":visible");
-        },
+        }
     });
 
     $("a[data-toggle=\"tab\"]").click(function(e) {
@@ -68,5 +68,5 @@ $(function() {
 
 /*When clicking on Full hide fail/success boxes */
 $('#name').focus(function() {
-    $('#success').html('');
+    $('#success').xhtml('');
 });
