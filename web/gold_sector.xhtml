@@ -140,8 +140,8 @@ td.ui-selection-column {
                         <p:ajax event="rowSelectRadio"
                                 update=":items_form:items_table"/>
 
-                        <f:facet name="header" id="header" >
-                            Gold Item
+                        <f:facet name="header" id="header"  >
+                            <p1> #{msgs.gold_sector}</p1>
                         </f:facet>
 
                         <p:column selectionMode="single" style="width:1%"/>
@@ -183,7 +183,7 @@ td.ui-selection-column {
                             <p:toolbar style="border: none">
                                 <p:toolbarGroup align="#{languageBean.screenLeft}">
                                     <p:commandButton value="#{msgs.details}"
-                                                     icon="ui-icon-pencil"                                  
+                                                     icon="ui-icon-info"                                  
                                                      iconPos="#{langBean.styleFloat}"
                                                      styleClass="commandButton"
                                                      style="float:#{langBean.styleFloat}" 
@@ -202,7 +202,7 @@ td.ui-selection-column {
                                                      action="add_edit_gold"
                                                      />
                                     <p:commandButton value="#{msgs.sell}"
-                                                     icon="ui-icon-pencil"                                  
+                                                     icon="ui-icon-cart"                                  
                                                      iconPos="#{langBean.styleFloat}"
                                                      styleClass="commandButton"
                                                      style="float:#{langBean.styleFloat}" 
@@ -219,13 +219,7 @@ td.ui-selection-column {
                                                      onclick="return confirm('#{msgs.confirm_delete_item}');"
                                                      actionListener="#{itemsBean.deleteSelectedItem()}"
                                                      action="gold_sector" />
-                                     <p:commandButton value="#{msgs.add}"
-                                     icon="ui-icon-plus"                                  
-                                     iconPos="#{langBean.styleFloat}"
-                                     styleClass="commandmyButton"
-                                     style="float:#{langBean.styleFloat}" 
-                                     actionListener="#{sessionBean.setSelectedItemId(-1)}"
-                                     action="add_edit_gold"/> 
+                                    
                                     
                                     
                                     
@@ -234,13 +228,20 @@ td.ui-selection-column {
                             
                         </f:facet>
                     </p:dataTable>
+                         <p:commandButton value="#{msgs.add}"
+                                     icon="ui-icon-plus"                                  
+                                     iconPos="#{langBean.styleFloat}"
+                                     styleClass="commandmyButton"
+                                     style="float:#{langBean.styleFloat}" 
+                                     actionListener="#{sessionBean.setSelectedItemId(-1)}"
+                                     action="add_edit_gold"/> 
 
                        <div id="embed" style="height: 230px; width: 95%;  padding-top: 1em"></div>
                           <p:dock itemWidth="100">
-                        <p:menuitem value="Home" icon="/resources/images/HomeButton.png" url="http://localhost:8080/kj/faces/welcome.xhtml"/>
+                        <p:menuitem value="Home" icon="/resources/images/HomeButton.png" url="http://localhost:44299/kj/faces/welcome.xhtml"/>
                         <p:menuitem value="GOLD" icon="/resources/images/gold_icon.png" url="http://www.kitco.com/charts/livegold.html"/>
-                        <p:menuitem value="DIAMON" icon="/resources/images/diamond_icon.png" url="http://localhost:8080/kj/faces/gold_sector.xhtml"/>
-                        <p:menuitem value="DIAMON" icon="/resources/images/sold.png" url="http://localhost:8080/kj/faces/view_sold_items.xhtml"/>
+                        <p:menuitem value="DIAMON" icon="/resources/images/diamond_icon.png" url="http://localhost:44299/kj/faces/gold_sector.xhtml"/>
+                        <p:menuitem value="SOLD" icon="/resources/images/sold.png" url="http://localhost:44299/kj/faces/view_sold_items.xhtml"/>
                         
                     </p:dock>
 

@@ -107,7 +107,7 @@ fieldset[disabled] .btn-primary.active {
   text-transform: uppercase;
   font-weight: 700;
   border-radius: 3px;
-  font-size: 18px;
+  font-size: 40px;
   padding: 20px 40px;
 }
 .btn-xl:hover,

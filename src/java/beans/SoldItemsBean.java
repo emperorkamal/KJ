@@ -138,6 +138,9 @@ public class SoldItemsBean implements Serializable{
         return cost;
     }
 
+    public void back(){
+        sessionBean.navigate("gold_sector.xhtml");
+    }
     /**
      * @param cost the cost to set
      */

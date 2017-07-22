@@ -21,7 +21,7 @@ import models.Items;
 
 /**
  *
- * @author Kamal Jabari
+ * @author Othman Kurdi
  */
 @Named(value = "itemsBean")
 @ViewScoped

@@ -221,7 +221,7 @@ div#loginform {
             <div class="wrap">
              
     
-}
+
                 
                 <div id="loginform" >
                     <h:graphicImage  style="float: top;
@@ -234,11 +234,16 @@ div#loginform {
                 <p class="form-title">
                     Sign In</p>
                 <h:form class="login">
-                <h:inputText id="username" value="#{login1.user}"></h:inputText>
+                <h:inputText id="username" value="#{login1.user}"
+                             required="true"
+                             requiredMessage="#{msgs.enter_username}"></h:inputText>
                 <h:message for="username"></h:message>
                 
                 
-               <h:inputSecret id="password" value="#{login1.pwd}"></h:inputSecret>
+               <h:inputSecret id="password" value="#{login1.pwd}" 
+                              required="true"
+                              requiredMessage="#{msgs.enter_password}">
+                </h:inputSecret>
                <h:message for="password"></h:message>
                <h:commandButton action="#{login1.validateUsernamePassword}"
 			value="Login"></h:commandButton>
