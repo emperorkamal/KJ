@@ -162,7 +162,10 @@ td.ui-selection-column {
                             </h:panelGrid>
                         </p:fieldset>
                         <h:panelGrid id="saveCancelNewUser_panelGrid" columns="2">
-                            <h:commandButton value="#{msgs.save}" action="#{addUserBean.addUser()}"/>
+                            <h:commandButton value="#{msgs.save}"  
+                                             icon=" ui-icon-disk"                                  
+                                             iconPos="#{langBean.styleFloat}"
+                                             action="#{addUserBean.addUser()}"/>
                             
                         </h:panelGrid>
 

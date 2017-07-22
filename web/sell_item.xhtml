@@ -123,7 +123,7 @@ td.ui-selection-column {
             <h:form id="items_form">
                 
                 <p:panel header="#{msgs.sale_item}"                            
-                         style="min-height:400px; 
+                         style="min-height:450px; 
                          direction:#{langBean.dir};margin-top:10px; font-size:15pt">
                     <h:panelGrid id="sale_gold"
                                  style="float: #{langBean.styleFloat};" 
@@ -180,14 +180,14 @@ td.ui-selection-column {
                 
                 </p:panel>
                 <p:commandButton value="calculate"
-                                 icon="ui-icon-cancel"  
+                                 icon="ui-icon-calculator"  
                                  iconPos="#{langBean.styleFloat}"
                                  styleClass="commandButton"
                                  style="float:#{langBean.styleFloat}" 
                                  actionListener="#{saleItemBean.updatePrice(item_id)}"
                                  />
                  <p:commandButton value="confirm sale"
-                                 icon="ui-icon-cancel"  
+                                 icon="ui-icon-cart"  
                                  iconPos="#{langBean.styleFloat}"
                                  styleClass="commandButton"
                                  style="float:#{langBean.styleFloat}" 

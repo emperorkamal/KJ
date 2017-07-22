@@ -185,18 +185,19 @@ td.ui-selection-column {
                     
                 </p:fieldset>
                     
-                    
+                    <p:commandButton value="#{msgs.print_receipt}"
+                                 styleClass="commandButton"
+                                 icon="ui-icon-print"
+                                 iconPos="#{langBean.styleFloat}"
+                                 style="float:#{langBean.styleFloat}"
+                                  href="gold_sector.xhtml"
+                                 />
                     
                 </p:panel>
                
-                 <p:commandButton value="#{msgs.done}"
-                                 styleClass="commandButton"
-                                 icon="ui-icon-disk"
-                                 iconPos="#{langBean.styleFloat}"
-                                 style="float:#{langBean.styleFloat}"
-                                 action="gold_sector"/>
+                 
 
-
+<a id="gold_section" href="http://localhost:44299/kj/faces/gold_sector.xhtml" class="page-scroll btn btn-xl">#{msgs.done}</a>
             </h:form>        
         </ui:decorate>
 

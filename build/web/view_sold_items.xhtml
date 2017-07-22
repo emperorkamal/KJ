@@ -142,7 +142,7 @@ td.ui-selection-column {
                                 update=":items_form:items_table"/>
 
                         <f:facet name="header" id="header" >
-                            Gold Item
+                            <p1> #{msgs.sold_items}</p1>
                         </f:facet>
 
                         <p:column selectionMode="single" style="width:1%"/>
@@ -178,7 +178,7 @@ td.ui-selection-column {
                             <p:toolbar style="border: none">
                                 <p:toolbarGroup align="#{languageBean.screenLeft}">
                                     <p:commandButton value="#{msgs.details}"
-                                                     icon="ui-icon-pencil"                                  
+                                                     icon="ui-icon-info"                                  
                                                      iconPos="#{langBean.styleFloat}"
                                                      styleClass="commandButton"
                                                      style="float:#{langBean.styleFloat}" 
@@ -190,7 +190,7 @@ td.ui-selection-column {
                                     
                                    
                                     <p:commandButton value="#{msgs.restored}"
-                                                     icon="ui-icon-minus"                                  
+                                                     icon=" ui-icon-arrowreturnthick-1-n"                                  
                                                      iconPos="#{langBean.styleFloat}"
                                                      styleClass="commandButton"
                                                      style="float:#{langBean.styleFloat}" 
@@ -207,13 +207,9 @@ td.ui-selection-column {
                         </f:facet>
                     </p:dataTable>
 
-                    <p:commandButton value="back"
-                                                     icon="ui-icon-minus"                                  
-                                                     iconPos="#{langBean.styleFloat}"
-                                                     styleClass="commandButton"
-                                                     style="float:#{langBean.styleFloat}" 
-                                                     action="gold_sector" />
+                    
                      
+                    <a id="gold_section" href="http://localhost:44299/kj/faces/gold_sector.xhtml" class="page-scroll btn btn-xl">#{msgs.back}</a>
                     <p:dock itemWidth="100">
                         <p:menuitem value="Home" icon="/resources/images/HomeButton.png" url="http://localhost:8080/kj/faces/welcome.xhtml"/>
                         <p:menuitem value="GOLD" icon="/resources/images/gold_icon.png" url="http://www.kitco.com/charts/livegold.html"/>
