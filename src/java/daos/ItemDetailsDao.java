@@ -57,7 +57,7 @@ public class ItemDetailsDao extends MySQLAccess {
         try {
             Connection conn = getConnection();
             
-            String sql = "SELECT * FROM SOLD_ITEM WHERE ID=?";
+            String sql = "SELECT * FROM SOLD_ITEM WHERE SOLD_ID=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, item_id);
             
@@ -78,12 +78,14 @@ public class ItemDetailsDao extends MySQLAccess {
         
         SoldItems item = new SoldItems();
         
+        item.setSold_id(rs.getInt("sold_id"));
         item.setId(rs.getInt("id"));
         item.setModel(rs.getString("model"));
         item.setWeight(rs.getFloat("weight"));
         item.setCirat(rs.getFloat("cirat"));
         item.setColor(rs.getString("color"));
         item.setCost(rs.getFloat("cost"));
+        item.setSold_quantity(rs.getInt("sold_quantity"));
         item.setTrader(rs.getString("trader"));
         item.setProfit(rs.getFloat("profit"));
         item.setPrice_without_cost(rs.getFloat("price_without_cost"));
@@ -115,31 +117,24 @@ public class ItemDetailsDao extends MySQLAccess {
         }
     }
     
-    public void updateItem(Items item) throws Exception {
+    public void updateItem(Items item, int item_id) throws Exception {
         try {
             Connection conn = getConnection();
             
-            String sql = "UPDATE GOLD_ITEM SET"
-                    + "MODEL=?,"
-                    + "QUANTITY=?,"
-                    + "WEIGHT=?,"
-                    + "CIRAT=?,"
-                    + "COST=?"
-                    + "COLOR=?,"
-                    + "TRADER=?"
-                    + "WHERE (ID=?)";
+            String sql = "UPDATE kj.GOLD_ITEM SET ID=?, MODEL=?, QUANTITY=?, WEIGHT=?, CIRAT=?, COLOR=?, COST=?, TRADER=? WHERE ID=?";
             PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, item_id);
+            ps.setString(2, item.getModel());
+            ps.setInt(3, item.getQuantity());
             
-            ps.setString(1, item.getModel());
-            ps.setInt(2, item.getQuantity());
-            ps.setFloat(3, item.getWeight());
-            ps.setFloat(4, item.getCirat());
-            ps.setFloat(5, item.getCost());
+            ps.setFloat(4, item.getWeight());
+            ps.setFloat(5, item.getCirat());
             ps.setString(6, item.getColor());
-            ps.setString(7, item.getTrader());
-            ps.setInt(8, item.getId());
+            ps.setFloat(7, item.getCost());
+            ps.setString(8, item.getTrader());
+            ps.setInt(9, item_id);
             ps.executeUpdate();
-            
             ps.close();
         } catch (SQLException e) {
             throw new SQLException(e.getMessage());

@@ -27,6 +27,15 @@ public class SessionBean implements Serializable {
 
     // Session attributes
     private float profit;
+    private int sold_quantity;
+
+    public int getSold_quantity() {
+        return sold_quantity;
+    }
+
+    public void setSold_quantity(int sold_quantity) {
+        this.sold_quantity = sold_quantity;
+    }
 
     public float getProfit() {
         return profit;

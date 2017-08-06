@@ -134,7 +134,7 @@ td.ui-selection-column {
                         <p:outputLabel value="#{saleItemBean.model}" />
                         
 
-                        <p:outputLabel value="#{msgs.quantity}"  />
+                        <p:outputLabel value="#{msgs.available_quantity}" />
                         <p:outputLabel value="#{saleItemBean.quantity}" />
                        
                         
@@ -149,6 +149,14 @@ td.ui-selection-column {
                         <p:outputLabel value="#{msgs.cost}" />
                         <p:outputLabel value="#{saleItemBean.cost}" />
                         
+                        <p:outputLabel value="#{msgs.sold_quantity}" />
+                        
+                        <p:inputText id="sold_quantity"
+                                     value="#{sessionBean.sold_quantity}"
+                                     style="width:350px"
+                                     required="true"
+                                     maxlength="512">
+                        </p:inputText>
                         
                         <p:outputLabel value="#{msgs.color}"  />
                         <p:outputLabel value="#{saleItemBean.color}" />
@@ -166,15 +174,27 @@ td.ui-selection-column {
                         </p:inputText>
                         
                        
-                        
-                        
+                        </h:panelGrid>
+                        <h:panelGrid id="prices"
+                                 style="float: #{langBean.styleFloat};" 
+                                 columns="4"                              
+                                 dir="#{langBean.dir}">
                         
                         <p:outputLabel value="#{msgs.price_without_cost}"  />                                          
                         <p:outputLabel value="#{saleItemBean.price_without_cost}"  />
+                        <p:outputLabel value="#{msgs.pieces_price_without_cost}"  />                                          
+                        <p:outputLabel value="#{saleItemBean.pieces_price_without_cost}"  />
+                        
                         <p:outputLabel value="#{msgs.price_with_cost}"  />                                          
                         <p:outputLabel value="#{saleItemBean.price_with_cost}"  />
+                        <p:outputLabel value="#{msgs.pieces_price_with_cost}"  />                                          
+                        <p:outputLabel value="#{saleItemBean.pieces_price_with_cost}"  />
+                        
                         <p:outputLabel value="#{msgs.total_price}"  />                                          
                         <p:outputLabel value="#{saleItemBean.total_price}"  />
+                        <p:outputLabel value="#{msgs.pieces_total_price}"  />                                          
+                        <p:outputLabel value="#{saleItemBean.pieces_total_price}"  />
+                        
                     </h:panelGrid>
                     
                 

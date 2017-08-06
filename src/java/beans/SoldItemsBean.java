@@ -29,17 +29,21 @@ public class SoldItemsBean implements Serializable{
     /**
      * Creates a new instance of SoldItemsBean
      */
+    private int sold_id;
     private int id;
     private String model;
     private float weight;
-    private String cirat;
+    private float cirat;
     private String color;
-    private int cost;
+    private float cost;
+    private int sold_quantity;
     private String trader;
     private float price_without_cost;
-     private float price_with_cost;
-     private float total_price;
-     private float profit;
+    private float price_with_cost;
+    private float total_price;
+    private float profit;
+
+   
 
     
     @Inject
@@ -74,6 +78,22 @@ public class SoldItemsBean implements Serializable{
     public void setId(int id) {
         this.id = id;
     }
+    
+     public int getSold_id() {
+        return sold_id;
+    }
+
+    public void setSold_id(int sold_id) {
+        this.sold_id = sold_id;
+    }
+
+    public int getSold_quantity() {
+        return sold_quantity;
+    }
+
+    public void setSold_quantity(int sold_quantity) {
+        this.sold_quantity = sold_quantity;
+    }
 
     /**
      * @return the model
@@ -106,14 +126,14 @@ public class SoldItemsBean implements Serializable{
     /**
      * @return the cirat
      */
-    public String getCirat() {
+    public Float getCirat() {
         return cirat;
     }
 
     /**
      * @param cirat the cirat to set
      */
-    public void setCirat(String cirat) {
+    public void setCirat(Float cirat) {
         this.cirat = cirat;
     }
 
@@ -134,7 +154,7 @@ public class SoldItemsBean implements Serializable{
     /**
      * @return the cost
      */
-    public int getCost() {
+    public float getCost() {
         return cost;
     }
 
@@ -188,7 +208,9 @@ public class SoldItemsBean implements Serializable{
         this.profit = profit;
     }
 
-   
+   public void saveSoldSelectedItemId() {
+        sessionBean.setSelectedItemId(soldSelectedItem.getSold_id());
+    }
     
     
 

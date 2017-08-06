@@ -82,17 +82,22 @@ public class ItemsDao extends MySQLAccess {
 
         SoldItems item = new SoldItems();
 
+        item.setSold_id(rs.getInt("sold_id"));
         item.setId(rs.getInt("id"));
         item.setModel(rs.getString("model"));
         item.setWeight(rs.getFloat("weight"));
         item.setCirat(rs.getFloat("cirat"));
         item.setColor(rs.getString("color"));
         item.setCost(rs.getFloat("cost"));
+        item.setSold_quantity(rs.getInt("sold_quantity"));
         item.setTrader(rs.getString("trader"));
         item.setProfit(rs.getFloat("profit"));
         item.setPrice_without_cost(rs.getFloat("price_without_cost"));
         item.setPrice_with_cost(rs.getFloat("price_with_cost"));
         item.setTotal_price(rs.getFloat("total_price"));
+        item.setPieces_price_without_cost(rs.getFloat("pieces_price_without_cost"));
+        item.setPieces_price_with_cost(rs.getFloat("pieces_price_with_cost"));
+        item.setPieces_total_price(rs.getFloat("pieces_total_price"));
         
         return item;
     }
@@ -174,7 +179,7 @@ public class ItemsDao extends MySQLAccess {
 
         try {
             Connection conn = getConnection();
-            String sql = "insert into sold_item values(?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into sold_item select max(sold_id)+1,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? from sold_item";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ps.setInt(1, sold_item.getId());
@@ -183,11 +188,15 @@ public class ItemsDao extends MySQLAccess {
             ps.setFloat(4, sold_item.getCirat());
             ps.setString(5, sold_item.getColor());
             ps.setFloat(6, sold_item.getCost());
-            ps.setString(7, sold_item.getTrader());
-            ps.setFloat(8, sold_item.getProfit());
-            ps.setFloat(9, sold_item.getPrice_without_cost());
-            ps.setFloat(10, sold_item.getPrice_with_cost());
-            ps.setFloat(11, sold_item.getTotal_price());
+            ps.setInt(7, sold_item.getSold_quantity());
+            ps.setString(8, sold_item.getTrader());
+            ps.setFloat(9, sold_item.getProfit());
+            ps.setFloat(10, sold_item.getPrice_without_cost());
+            ps.setFloat(11, sold_item.getPrice_with_cost());
+            ps.setFloat(12, sold_item.getTotal_price());
+            ps.setFloat(13, sold_item.getPieces_price_without_cost());
+            ps.setFloat(14, sold_item.getPieces_price_with_cost());
+            ps.setFloat(15, sold_item.getPieces_total_price());
             
             
             
