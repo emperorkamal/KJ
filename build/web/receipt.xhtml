@@ -118,6 +118,10 @@ td.ui-selection-column {
     background: rgba(255, 255, 255, 0.23) !important;
     color: #4f4f4f;
 }
+.commandButton:hover {
+    background-color: #ffd700; 
+    color: black;
+}
 </style>
         <ui:decorate template="/app_templates/app_template.xhtml">                                            
             <h:form id="customer_form">
@@ -190,14 +194,15 @@ td.ui-selection-column {
                                  icon="ui-icon-print"
                                  iconPos="#{langBean.styleFloat}"
                                  style="float:#{langBean.styleFloat}"
-                                  href="gold_sector.xhtml"
-                                 />
+                                  
+                                 ><p:printer target="image"/> </p:commandButton>
+                    <p:graphicImage id="image" name="resources/images/KJ_1.png"/>
                     
                 </p:panel>
                
                  
 
-<a id="gold_section" href="http://localhost:42106/kj/faces/gold_sector.xhtml" class="page-scroll btn btn-xl">#{msgs.done}</a>
+<a id="gold_section" href="http://localhost:8080/kj/faces/gold_sector.xhtml" class="page-scroll btn btn-xl">#{msgs.done}</a>
             </h:form>        
         </ui:decorate>
 

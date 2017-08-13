@@ -120,19 +120,24 @@ td.ui-selection-column {
     background: rgba(255, 255, 255, 0.23) !important;
     color: #4f4f4f;
 }
+.commandButton:hover {
+    background-color: #ffd700; 
+    color: black;
+}
 </style>
         <ui:decorate template="/app_templates/app_template.xhtml">  
             <h:form id="add_gold">            
                 <p:messages id="msgs" closable="true" globalOnly="true"/>
 
-                <p:panel header="#{msgs.item_details}"                            
+                <p:panel  header="#{msgs.item_details}"                            
                          style="min-height:400px; 
-                         direction:#{langBean.dir};margin-top:10px; font-size:15pt">
+                         direction:#{langBean.dir};margin-top:10px; font-size:15pt"
+                         >
                     <h:panelGrid id="add_gold"
                                  style="float: #{langBean.styleFloat};" 
                                  columns="2"                              
                                  dir="#{langBean.dir}">
-                        
+                       
 
                         <p:outputLabel value="#{msgs.model}" />
                         <p:outputLabel value="#{itemDetailsBean.model}" />
@@ -163,12 +168,12 @@ td.ui-selection-column {
 
                     </h:panelGrid>
                 </p:panel>
-
+                
               
             <div class="row">
                 
                    
-                <a id="gold_section" href="http://localhost:42106/kj/faces/gold_sector.xhtml" class="page-scroll btn btn-xl ">#{msgs.done} </a>
+                <a id="gold_section" href="http://localhost:8080/kj/faces/gold_sector.xhtml" class="page-scroll btn btn-xl ">#{msgs.done} </a>
             </div>
 
 

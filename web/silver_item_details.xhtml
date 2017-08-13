@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+
+    <h:head>
+        <title>#{msgs.app_title}</title>
+    </h:head>
+    <h:body>
+      <style>
+        
+     div#app_container {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+div#app_content {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+div#upper_left {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+div#upper_right {
+    background-color: rgba(255, 255, 255, 0);
+}   
+        body {
+   
+      background: url(./resources/images/loginbg.jpg) no-repeat center center fixed; 
+      -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+        div#app_content {
+       width: 95% !important;
+    /* float: left; */
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+
+td.ui-selection-column {
+    padding: 1em !important;
+    margin-right: 2em !important;
+}
+
+.ui-datatable-tablewrapper {
+    padding: -1em !important;
+}
+.ui-panel .ui-panel-content {
+    border: 0;
+    background: none;
+    padding: 0em 1em;
+    margin-top: 2em;
+}
+
+.ui-datatable-odd {
+    background: none repeat scroll 0 0 #ffd400 !important;
+}
+
+.ui-widget-content {
+    border: 1px solid #000000 !important;
+    background: #ffffff;
+    color: #4f4f4f;
+}
+
+.ui-widget-header {
+    border: 1px solid #ffd400;
+    background: #c4c4c4 url(/kj/faces/javax.faces.resource/images/ui-bg_highlight-soft_100_c4c4c4_1x100.png?ln=primefaces-aristo) 50% 50% repeat-x;
+    background: #c4c4c4 linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    background: #ffd400 -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0))) !important;
+    background: #c4c4c4 -moz-linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    color: #333;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+}
+
+
+.ui-widget-content {
+    border: 1px solid #000000 !important;
+    background: rgba(255, 255, 255, 0.23) !important;
+    color: #4f4f4f;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border: 1px solid #a8a8a8;
+    background: #c4c4c4 url(/kj/faces/javax.faces.resource/images/ui-bg_highlight-hard_80_c4c4c4_1x100.png?ln=primefaces-aristo) 50% 50% repeat-x;
+    background: #c4c4c4 linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    background: rgba(196, 196, 196, 0) -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0)));
+    background: #c4c4c4 -moz-linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    font-weight: bold;
+    color: #4f4f4f;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+}
+
+.ui-widget-header {
+    border: 1px solid rgba(255, 212, 0, 0.49);
+    background: #c4c4c4 url(/kj/faces/javax.faces.resource/images/ui-bg_highlight-soft_100_c4c4c4_1x100.png?ln=primefaces-aristo) 50% 50% repeat-x;
+    background: #c4c4c4 linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    background: rgba(255, 212, 0, 0.28) -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0))) !important;
+    background: #c4c4c4 -moz-linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    color: #333;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+}
+.ui-datatable tbody td {
+    border-color: darkgrey;
+    
+    
+}
+
+
+.ui-widget-content {
+    border: 0px solid rgba(0, 0, 0, 0) !important;
+    background: rgba(255, 255, 255, 0.23) !important;
+    color: #4f4f4f;
+}
+.commandButton:hover {
+    background-color: #ffd700; 
+    color: black;
+}
+</style>
+        <ui:decorate template="/app_templates/app_template.xhtml">  
+            <h:form id="add_silver">            
+                <p:messages id="msgs" closable="true" globalOnly="true"/>
+
+                <p:panel header="#{msgs.item_details}"                            
+                         style="min-height:400px; 
+                         direction:#{langBean.dir};margin-top:10px; font-size:15pt">
+                    <h:panelGrid id="add_silver"
+                                 style="float: #{langBean.styleFloat};" 
+                                 columns="2"                              
+                                 dir="#{langBean.dir}">
+                        
+
+                        <p:outputLabel value="#{msgs.model}" />
+                        <p:outputLabel value="#{silverItemDetailsBean.model}" />
+
+
+                        <p:outputLabel value="#{msgs.quantity}"  />
+                        <p:outputLabel value="#{silverItemDetailsBean.quantity}" />
+
+
+                        <p:outputLabel value="#{msgs.weight}"  />
+                        <p:outputLabel value="#{silverItemDetailsBean.weight}" />
+
+
+                        <p:outputLabel value="#{msgs.cirat}"/>
+                        <p:outputLabel value="#{silverItemDetailsBean.cirat}" />
+
+
+                        <p:outputLabel value="#{msgs.cost}" />
+                        <p:outputLabel value="#{silverItemDetailsBean.cost}" />
+
+
+                        <p:outputLabel value="#{msgs.color}"  />
+                        <p:outputLabel value="#{silverItemDetailsBean.color}" />
+
+
+                        <p:outputLabel value="#{msgs.trader}"  />
+                        <p:outputLabel value="#{silverItemDetailsBean.trader}" />
+
+                    </h:panelGrid>
+                </p:panel>
+
+              
+            <div class="row">
+                
+                   
+                <a id="gold_section" href="http://localhost:8080/kj/faces/silver_sector.xhtml" class="page-scroll btn btn-xl ">#{msgs.done} </a>
+            </div>
+
+
+            </h:form>
+        </ui:decorate>
+    </h:body>
+
+</html>
+

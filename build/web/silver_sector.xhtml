@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    
+ <h:outputStylesheet library="css" name="newcss1.css"/> 
+    <h:head>
+        <title>#{msgs.app_title}</title>
+    </h:head>
+    
+        <style>
+        
+     div#app_container {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+div#app_content {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+div#upper_left {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+div#upper_right {
+    background-color: rgba(255, 255, 255, 0);
+}   
+        body {
+   
+      background: url(./resources/images/loginbg.jpg) no-repeat center center fixed; 
+      -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+        div#app_content {
+       width: 95% !important;
+    /* float: left; */
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+td.ui-selection-column {
+    padding: 1em !important;
+    margin-right: 2em !important;
+}
+
+.ui-datatable-tablewrapper {
+    padding: -1em !important;
+}
+
+
+.ui-datatable-odd {
+    background: none repeat scroll 0 0 #ffd400 !important;
+}
+
+.ui-widget-content {
+    border: 1px solid #000000 !important;
+    background: #ffffff;
+    color: #4f4f4f;
+}
+
+.ui-widget-header {
+    border: 1px solid #ffd400;
+    background: #c4c4c4 url(/kj/faces/javax.faces.resource/images/ui-bg_highlight-soft_100_c4c4c4_1x100.png?ln=primefaces-aristo) 50% 50% repeat-x;
+    background: #c4c4c4 linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    background: #ffd400 -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0))) !important;
+    background: #c4c4c4 -moz-linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    color: #333;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+}
+
+
+.ui-widget-content {
+    border: 1px solid #000000 !important;
+    background: rgba(255, 255, 255, 0.23) !important;
+    color: #4f4f4f;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border: 1px solid #a8a8a8;
+    background: #c4c4c4 url(/kj/faces/javax.faces.resource/images/ui-bg_highlight-hard_80_c4c4c4_1x100.png?ln=primefaces-aristo) 50% 50% repeat-x;
+    background: #c4c4c4 linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    background: rgba(196, 196, 196, 0) -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0)));
+    background: #c4c4c4 -moz-linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    font-weight: bold;
+    color: #4f4f4f;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+}
+
+.ui-widget-header {
+    border: 1px solid rgba(255, 212, 0, 0.49);
+    background: #c4c4c4 url(/kj/faces/javax.faces.resource/images/ui-bg_highlight-soft_100_c4c4c4_1x100.png?ln=primefaces-aristo) 50% 50% repeat-x;
+    background: #c4c4c4 linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    background: rgba(255, 212, 0, 0.28) -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0))) !important;
+    background: #c4c4c4 -moz-linear-gradient(top, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    color: #333;
+    font-weight: bold;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+}
+.ui-datatable tbody td {
+    border-color: darkgrey;
+}
+.commandButton:hover {
+    background-color: #ffd700; 
+    color: black;
+}
+</style>
+    
+    
+    <h:body>
+        
+        <ui:decorate template="/app_templates/app_template.xhtml">                                            
+                <h:form id="silver_items_form">
+                   
+
+                    <h:panelGrid id="sale_silver"
+                                 style="float: #{langBean.styleFloat};" 
+                                 columns="1"                              
+                                 dir="#{langBean.dir}">
+                        
+                    <p:dataTable id="items_table"
+                                 class="dataTable"
+                                 value="#{silverItemsBean.list}"
+                                 selection="#{silverItemsBean.selectedItem}"
+                                 rowKey="#{item.id}"                    
+                                 var="item" 
+                                 
+                                 rows="5"     
+                                 rowsPerPageTemplate="1,2,3,4,5,6"
+                                 dir="#{langBean.dir}"
+                                 emptyMessage="No Item Found"
+                                 paginator="true"
+                                 paginatorPosition="top" 
+                                 paginatorTemplate="#{langBean.isEnglish? '{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}' : '{RowsPerPageDropdown} {LastPageLink} {NextPageLink} {PageLinks} {PreviousPageLink} {FirstPageLink}'}"
+                                 >
+
+                        <p:ajax event="rowSelectRadio"
+                                update=":silver_items_form:items_table"/>
+
+                        <f:facet name="header" id="header"  >
+                            <p1> #{msgs.silver_section}</p1>
+                        </f:facet>
+
+                        <p:column selectionMode="single" style="width:1%"/>
+                        <p:column headerText="#{msgs.item_id}"
+                                  style="width:4%"
+                                  filterBy="#{item.id}"
+                                  filterMatchMode="contains"
+                                  sortBy="#{item.id}"> 
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+
+                        <p:column headerText="#{msgs.model}"
+                                  style="width:10%"
+                                  filterBy="#{item.model}"
+                                  filterMatchMode="contains"
+                                  sortBy="#{bus.busID}"> 
+                            <h:outputText value="#{item.model}"/>  
+                        </p:column>
+
+                        <p:column headerText="#{msgs.quantity}"
+                                  style="width:10%"
+                                  filterBy="#{item.quantity}"
+                                  filterMatchMode="contains"
+                                  sortBy="#{item.id}"> 
+                            <h:outputText value="#{item.quantity}"/>  
+                        </p:column>
+                        
+                        <p:column headerText="#{msgs.weight}"
+                                  style="width:10%"
+                                  filterBy="#{item.weight}"
+                                  filterMatchMode="contains"
+                                  sortBy="#{item.id}"> 
+                            <h:outputText value="#{item.weight}"/>  
+                        </p:column>
+
+
+
+                        <f:facet name="footer">
+                            <p:toolbar style="border: none">
+                                <p:toolbarGroup align="#{languageBean.screenLeft}">
+                                    <p:commandButton value="#{msgs.details}"
+                                                     icon="ui-icon-info"                                  
+                                                     iconPos="#{langBean.styleFloat}"
+                                                     styleClass="commandButton"
+                                                     style="float:#{langBean.styleFloat}" 
+                                                     disabled="#{silverItemsBean.selectedItem==null}"
+                                                     actionListener="#{silverItemsBean.saveSelectedItemId()}"
+                                                     action="silver_item_details"
+                                                     />
+                                    
+                                    <p:commandButton value="#{msgs.edit}"
+                                                     icon="ui-icon-pencil"                                  
+                                                     iconPos="#{langBean.styleFloat}"
+                                                     styleClass="commandButton"
+                                                     style="float:#{langBean.styleFloat}" 
+                                                     disabled="#{silverItemsBean.selectedItem==null}"
+                                                     actionListener="#{SilverItemsBean.saveSelectedItemId()}"
+                                                     action="add_edit_silver"
+                                                     />
+                                    <p:commandButton value="#{msgs.sell}"
+                                                     icon="ui-icon-cart"                                  
+                                                     iconPos="#{langBean.styleFloat}"
+                                                     styleClass="commandButton"
+                                                     style="float:#{langBean.styleFloat}" 
+                                                     disabled="#{silverItemsBean.selectedItem==null}"
+                                                     actionListener="#{silverItemsBean.saveSelectedItemId()}"
+                                                     action="sell_silver_item"
+                                                     />
+                                    <p:commandButton value="#{msgs.delete}"
+                                                     icon="ui-icon-minus"                                  
+                                                     iconPos="#{langBean.styleFloat}"
+                                                     styleClass="commandButton"
+                                                     style="float:#{langBean.styleFloat}" 
+                                                     disabled="#{silverItemsBean.selectedItem==null}"
+                                                     onclick="return confirm('#{msgs.confirm_delete_item}');"
+                                                     actionListener="#{silverItemsBean.deleteSelectedItem()}"
+                                                     action="silver_sector" />
+                                    
+                                    
+                                    
+                                    
+                                </p:toolbarGroup>
+                            </p:toolbar>
+                            
+                        </f:facet>
+                    </p:dataTable>
+                         <p:commandButton value="#{msgs.add}"
+                                     icon="ui-icon-plus"                                  
+                                     iconPos="#{langBean.styleFloat}"
+                                     styleClass="commandmyButton"
+                                     style="float:#{langBean.styleFloat}" 
+                                     actionListener="#{sessionBean.setSelectedItemId(-1)}"
+                                     action="add_edit_silver"/> 
+
+                       <div id="embed" style="height: 230px; width: 95%;  padding-top: 1em"></div>
+                          <p:dock itemWidth="100">
+                        <p:menuitem value="Home" icon="/resources/images/HomeButton.png" url="http://localhost:8080/kj/faces/welcome.xhtml"/>
+                        <p:menuitem value="GOLD" icon="/resources/images/gold_icon.png" url="http://www.kitco.com/charts/livegold.html"/>
+                        <p:menuitem value="DIAMON" icon="/resources/images/diamond_icon.png" url="http://localhost:8080/kj/faces/silver_sector.xhtml"/>
+                        <p:menuitem value="SOLD" icon="/resources/images/sold.png" url="http://localhost:8080/kj/faces/view_silver_sold_items.xhtml"/>
+                        
+                    </p:dock>
+
+                                        
+                                    </h:panelGrid>
+                  
+
+<script type="text/javascript" src="https://www.bullionvault.com/chart/bullionvaultchart.js" ></script>
+		<script type="text/javascript" >
+			var options = {
+				bullion: 'silver',
+				currency: 'USD',
+				timeframe: '1w',
+				chartType: 'line',
+				miniChartModeAxis : 'oz',
+				referrerID: 'MYUSERNAME',
+				containerDefinedSize: true,
+				miniChartMode: false,
+				displayLatestPriceLine: true,
+				switchBullion: true,
+				switchCurrency: true,
+				switchTimeframe: true,
+				switchChartType: false,
+				exportButton: false
+			};
+			var chartBV = new BullionVaultChart(options, 'embed');
+		</script>
+
+  
+
+                </h:form> 
+         
+        </ui:decorate>
+       
+
+    </h:body>
+   
+</html>

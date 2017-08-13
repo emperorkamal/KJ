@@ -122,6 +122,10 @@ td.ui-selection-column {
 ul.ui-selectonemenu-items.ui-selectonemenu-list.ui-widget-content.ui-widget.ui-corner-all.ui-helper-reset {
     color: black;
 }
+.commandButton:hover {
+    background-color: #ffd700; 
+    color: black;
+}
 </style>
         <ui:decorate template="/app_templates/app_template.xhtml">  
             <h:form id="add_gold">            
@@ -156,7 +160,7 @@ ul.ui-selectonemenu-items.ui-selectonemenu-list.ui-widget-content.ui-widget.ui-c
                                      requiredMessage="#{msgs.value_correction}">
                             <f:validateLength minimum="2" />
                         </p:inputText>
-                        <h:message for="quantity" styleClass="errorMsg" "/>
+                        <h:message for="quantity" styleClass="errorMsg" />
 
                         <p:outputLabel value="#{msgs.weight}" for="weight" />
                         <p:inputText id="weight"

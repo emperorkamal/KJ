@@ -118,6 +118,10 @@ td.ui-selection-column {
     background: rgba(255, 255, 255, 0.23) !important;
     color: #4f4f4f;
 }
+.commandButton:hover {
+    background-color: #ffd700; 
+    color: black;
+}
 </style>
         <ui:decorate template="/app_templates/app_template.xhtml">                                            
                 <h:form id="items_form">
@@ -135,11 +139,16 @@ td.ui-selection-column {
                                  emptyMessage="No Item Found"
                                  paginator="true"
                                  paginatorPosition="top" 
-                                 paginatorTemplate="#{langBean.isEnglish? '{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}' : '{RowsPerPageDropdown} {LastPageLink} {NextPageLink} {PageLinks} {PreviousPageLink} {FirstPageLink}'}"
+                                 paginatorTemplate="#{langBean.isEnglish? '{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}' : '{RowsPerPageDropdown} {LastPageLink} {NextPageLink} {PageLinks} {PreviousPageLink} {FirstPageLink} {Exporters}'}"
                                  >
 
                         <p:ajax event="rowSelectRadio"
                                 update=":items_form:items_table"/>
+                        <f:facet name="{Exporters}">
+                            <h:commandLink >
+                                <p:graphicImage value="resources/images/pdf.png" width="30"/>
+                                <p:dataExporter type="pdf" target="items_table" fileName="cars" />
+                            </h:commandLink>                        </f:facet>
 
                         <f:facet name="header" id="header" >
                             <p1> #{msgs.sold_items}</p1>
@@ -209,7 +218,7 @@ td.ui-selection-column {
 
                     
                      
-                    <a id="gold_section" href="http://localhost:42106/kj/faces/gold_sector.xhtml" class="page-scroll btn btn-xl">#{msgs.back}</a>
+                    <a id="gold_section" href="http://localhost:8080/kj/faces/gold_sector.xhtml" class="page-scroll btn btn-xl">#{msgs.back}</a>
                     <p:dock itemWidth="100">
                         <p:menuitem value="Home" icon="/resources/images/HomeButton.png" url="http://localhost:8080/kj/faces/welcome.xhtml"/>
                         <p:menuitem value="GOLD" icon="/resources/images/gold_icon.png" url="http://www.kitco.com/charts/livegold.html"/>

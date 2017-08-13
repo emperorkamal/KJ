@@ -33,6 +33,20 @@ import models.SoldItems;
 @Dependent
 public class SaleItemBean {
 
+     private boolean paginatorActive = true;
+
+    public void activatePaginator() {
+        paginatorActive = true;
+    }
+
+    public void deactivatePaginator() {
+        paginatorActive = false;
+    }
+
+    public boolean isPaginatorActive() {
+        return paginatorActive;
+    }
+    
     private int id;
     private String model;
     private int quantity;
