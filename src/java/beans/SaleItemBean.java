@@ -16,12 +16,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.SessionBean;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.JOptionPane;
 import models.Items;
 import models.SoldItems;
 
@@ -31,22 +34,8 @@ import models.SoldItems;
  */
 @Named(value = "saleItemBean")
 @Dependent
-public class SaleItemBean {
+public class SaleItemBean implements Serializable{
 
-     private boolean paginatorActive = true;
-
-    public void activatePaginator() {
-        paginatorActive = true;
-    }
-
-    public void deactivatePaginator() {
-        paginatorActive = false;
-    }
-
-    public boolean isPaginatorActive() {
-        return paginatorActive;
-    }
-    
     private int id;
     private String model;
     private int quantity;
@@ -63,8 +52,6 @@ public class SaleItemBean {
     public float pieces_price_without_cost;
     public float pieces_price_with_cost;
     public float pieces_total_price;
-
-    
 
     Items item = new Items();
     private Items selectedItem;
@@ -86,7 +73,7 @@ public class SaleItemBean {
 
         int item_id = sessionBean.getSelectedItemId();
         profit = sessionBean.getProfit();
-        sold_quantity=sessionBean.getSold_quantity();
+        sold_quantity = sessionBean.getSold_quantity();
         try {
 
             if (item_id > 0) {
@@ -101,15 +88,15 @@ public class SaleItemBean {
                 trader = item.getTrader();
 
                 profit = sessionBean.getProfit();
-                sold_quantity=sessionBean.getSold_quantity();
-                
+                sold_quantity = sessionBean.getSold_quantity();
+
                 price_without_cost = (float) ((weight * 1228.0 * 32.15 * 0.71 * cirat) / 1000.0);
                 price_with_cost = (float) ((weight * 1228.0 * 32.15 * 0.71 * cirat) / 1000.0) + cost;
                 total_price = (float) ((weight * 1228.0 * 32.15 * 0.71 * cirat) / 1000.0) + cost + profit;
-                
-                pieces_price_without_cost = (float) ((weight * 1228.0 * 32.15 * 0.71 * cirat) / 1000.0)*sold_quantity;
-                pieces_price_with_cost = (float) (((weight * 1228.0 * 32.15 * 0.71 * cirat) / 1000.0) + cost)*sold_quantity;
-                pieces_total_price=total_price*sold_quantity;
+
+                pieces_price_without_cost = (float) ((weight * 1228.0 * 32.15 * 0.71 * cirat) / 1000.0) * sold_quantity;
+                pieces_price_with_cost = (float) (((weight * 1228.0 * 32.15 * 0.71 * cirat) / 1000.0) + cost) * sold_quantity;
+                pieces_total_price = total_price * sold_quantity;
             }
         } catch (Exception ex) {
             Logger.getLogger(ItemDetailsBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -132,10 +119,11 @@ public class SaleItemBean {
         price_without_cost = (float) ((weight * 1228.0 * 32.15 * 0.71 * cirat) / 1000.0);
         price_with_cost = (float) ((weight * 1228.0 * 32.15 * 0.71 * cirat) / 1000.0) + cost;
         total_price = (float) ((weight * 1228.0 * 32.15 * 0.71 * cirat) / 1000.0) + cost + profit;
-        
-        pieces_price_without_cost = (float) ((weight * 1228.0 * 32.15 * 0.71 * cirat) / 1000.0)*sold_quantity;
-                pieces_price_with_cost = (float) (((weight * 1228.0 * 32.15 * 0.71 * cirat) / 1000.0) + cost)*sold_quantity;
-                pieces_total_price=total_price*sold_quantity;
+
+        pieces_price_without_cost = (float) ((weight * 1228.0 * 32.15 * 0.71 * cirat) / 1000.0) * sold_quantity;
+        pieces_price_with_cost = (float) (((weight * 1228.0 * 32.15 * 0.71 * cirat) / 1000.0) + cost) * sold_quantity;
+        pieces_total_price = total_price * sold_quantity;
+
         reload();
         System.out.println(total_price);
     }
@@ -148,9 +136,24 @@ public class SaleItemBean {
     /**
      * @return the id
      */
+     private UIComponent mybutton;
 
+    public UIComponent getMybutton() {
+        return mybutton;
+    }
+
+    public void setMybutton(UIComponent mybutton) {
+        this.mybutton = mybutton;
+    }
     public void saveItem() {
+        
         try {
+            if(quantity<sold_quantity){
+                
+             FacesMessage message = new FacesMessage("Invalid Quantity !");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(mybutton.getClientId(context), message);   
+            }else{
             int item_id = sessionBean.getSelectedItemId();
             SoldItems item = new SoldItems();
 
@@ -169,7 +172,7 @@ public class SaleItemBean {
             item.setPieces_price_without_cost(pieces_price_without_cost);
             item.setPieces_price_with_cost(pieces_price_with_cost);
             item.setPieces_total_price(pieces_total_price);
-            
+
             Insertitemdao.insertSoldItem(item);
 
             if (quantity == 1) {
@@ -179,16 +182,18 @@ public class SaleItemBean {
 
                 updated_item.setId(item_id);
                 updated_item.setModel(model);
-                updated_item.setQuantity(--quantity);
+                updated_item.setQuantity(quantity-sold_quantity);
                 updated_item.setWeight(weight);
                 updated_item.setCirat(cirat);
                 updated_item.setColor(color);
                 updated_item.setCost(cost);
                 updated_item.setTrader(trader);
 
-                itemdao.updateItem(updated_item,item_id);
+                itemdao.updateItem(updated_item, item_id);
             }
 
+            sessionBean.navigate("receipt.xhtml");
+            }
             //sessionBean.navigate("/gold_sector.xhtml");
         } catch (Exception ex) {
             Logger.getLogger(AddEditItemsBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -330,7 +335,7 @@ public class SaleItemBean {
     public void setProfit(float profit) {
         this.profit = profit;
     }
-    
+
     public int getSold_quantity() {
         return sold_quantity;
     }

@@ -35,8 +35,6 @@ public class ItemsBean implements Serializable{
     private String color;
     private int cost;
      private String trader;
-       private boolean paginatorActive = true;
-     
 
     @Inject
     private beans.SessionBean sessionBean;
@@ -44,7 +42,9 @@ public class ItemsBean implements Serializable{
     private Items selectedItem;
     private final ItemsDao itemdao = new ItemsDao();
     private ArrayList<Items> list;
+    private boolean paginatorActive=true;
 
+   
     
     public ItemsBean() {
     }
@@ -58,18 +58,12 @@ public class ItemsBean implements Serializable{
         }
     }
 
-    
-
-    public void activatePaginator() {
-        paginatorActive = true;
-    }
-
-    public void deactivatePaginator() {
-        paginatorActive = false;
-    }
-
-    public boolean isPaginatorActive() {
+     public boolean isPaginatorActive() {
         return paginatorActive;
+    }
+
+    public void setPaginatorActive(boolean paginatorActive) {
+        this.paginatorActive = paginatorActive;
     }
     /**
      * @return the id

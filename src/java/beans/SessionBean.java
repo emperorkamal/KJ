@@ -24,11 +24,41 @@ public class SessionBean implements Serializable {
 
     private String username;
     private String password;
-
-    // Session attributes
     private float profit;
     private int sold_quantity;
+    private String customer_name;
+    private String customer_phone;
+    private String customer_address;
 
+    
+    
+    
+    public String getCustomer_name() {
+        return customer_name;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+
+    public String getCustomer_phone() {
+        return customer_phone;
+    }
+
+    public void setCustomer_phone(String customer_phone) {
+        this.customer_phone = customer_phone;
+    }
+
+    public String getCustomer_address() {
+        return customer_address;
+    }
+
+    public void setCustomer_address(String customer_address) {
+        this.customer_address = customer_address;
+    }
+    
+    
+    
     public int getSold_quantity() {
         return sold_quantity;
     }
@@ -43,6 +73,7 @@ public class SessionBean implements Serializable {
 
     public void setProfit(float profit) {
         this.profit = profit;
+        //navigate("gold_sector");
     }
     private Connection connection; 
     private int selectedItemId; 
